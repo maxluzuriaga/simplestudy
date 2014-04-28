@@ -1,0 +1,76 @@
+var db = require("./lib/db.js"),
+    Post = require("./app/models/post"),
+    Category = require("./app/models/category");
+
+process.env.MONGOLAB_URI = process.env.MONGOLAB_URI || "mongodb://localhost/ivylist_development";
+
+desc('Create seed posts');
+task('seed', {async: true}, function(username, password) {
+  db.connect(function() {
+    Category.findOne({ slug: 'misc' }, function(err, category) {
+      var post = new Post({
+        title: 'This is a fresh new test post',
+        email: 'gschiller@friendscentral.org',
+        confirmed: true,
+        _category: category._id,
+        text_markdown: 'Lorem ipsum dolor **sit amet**, consectetur adipisicing elit, sed do _eiusmod tempor incididunt_ ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      });
+
+      post.save(function(err, post) {
+        complete();
+      });
+    });
+  });
+
+  jake.addListener('complete', function () {
+    process.exit();
+  });
+});
+
+desc('Create category');
+task('setup', {async: true}, function(name, slug) {
+  db.connect(function() {
+    var categories = [
+      ['Misc.', 'misc'],
+      ['Textbooks', 'textbooks'],
+      ['Tickets', 'tickets'],
+      ['Events', 'events'],
+      ['Groups', 'groups'],
+      ['Housing', 'housing']
+    ];
+
+    var _create = function(index) {
+      if (index >= categories.length) {
+        complete();
+        return;
+      }
+
+      var arr = categories[index];
+      var cat = new Category({
+        name: arr[0],
+        slug: arr[1]
+      });
+
+      Category.findOne({ name: arr[0], slug: arr[1] }, function(err, existing) {
+        if (existing) {
+          _create(index + 1);
+        } else {
+          cat.save(function(err, cat) {
+            _create(index + 1);
+          });
+        }
+      });
+    }
+
+    _create(0);
+  });
+
+  jake.addListener('complete', function () {
+    process.exit();
+  });
+});
+
+desc('Run the test suite');
+task('test', function() {
+  jake.exec(["./node_modules/.bin/mocha --reporter list"], { printStdout: true });
+});

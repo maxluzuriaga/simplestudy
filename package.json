@@ -1,0 +1,23 @@
+{
+  "name": "PennGems",
+  "version": "0.0.1",
+  "author": "Max Luzuriaga",
+  "dependencies": {
+    "express": "*",
+    "connect": "*",
+    "ejs": "*",
+    "mongoose": "*",
+    "mocha": "*",
+    "jake": "*",
+    "dateformat": "*",
+    "marked": "*",
+    "sendgrid": "*",
+    "socket.io": "*",
+    "bcrypt": "*",
+    "aws-sdk": "*"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  }
+}

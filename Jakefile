@@ -1,8 +1,6 @@
-var db = require("./lib/db.js"),
-    Post = require("./app/models/post"),
-    Category = require("./app/models/category");
-
-process.env.MONGOLAB_URI = process.env.MONGOLAB_URI || "mongodb://localhost/ivylist_development";
+var db = require("./lib/db.js");
+    // Post = require("./app/models/post"),
+    // Category = require("./app/models/category");
 
 desc('Create seed posts');
 task('seed', {async: true}, function(username, password) {
@@ -27,46 +25,29 @@ task('seed', {async: true}, function(username, password) {
   });
 });
 
-desc('Create category');
-task('setup', {async: true}, function(name, slug) {
-  db.connect(function() {
-    var categories = [
-      ['Misc.', 'misc'],
-      ['Textbooks', 'textbooks'],
-      ['Tickets', 'tickets'],
-      ['Events', 'events'],
-      ['Groups', 'groups'],
-      ['Housing', 'housing']
-    ];
-
-    var _create = function(index) {
-      if (index >= categories.length) {
-        complete();
-        return;
-      }
-
-      var arr = categories[index];
-      var cat = new Category({
-        name: arr[0],
-        slug: arr[1]
-      });
-
-      Category.findOne({ name: arr[0], slug: arr[1] }, function(err, existing) {
-        if (existing) {
-          _create(index + 1);
-        } else {
-          cat.save(function(err, cat) {
-            _create(index + 1);
-          });
-        }
-      });
-    }
-
-    _create(0);
+namespace('db', function() {
+  desc('Migrate the database');
+  task('migrate', function(env) {
+    env = env || "dev"
+    jake.exec(["./node_modules/.bin/db-migrate up --config config/database.json --env "+env], { printStdout: true});
   });
 
-  jake.addListener('complete', function () {
-    process.exit();
+  desc('Migrate the database down');
+  task('down', function(env) {
+    env = env || "dev"
+    jake.exec(["./node_modules/.bin/db-migrate down --config config/database.json --env "+env], { printStdout: true});
+  });
+
+  desc('Reset the database');
+  task('reset', {async: true}, function() {
+    db.reset(function() {
+      console.log("Database cleared");
+      complete();
+    });
+
+    jake.addListener('complete', function () {
+      process.exit();
+    });
   });
 });
 

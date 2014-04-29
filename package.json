@@ -10,7 +10,9 @@
     "jake": "*",
     "dateformat": "*",
     "socket.io": "*",
-    "bcrypt": "*"
+    "bcrypt": "*",
+    "knex": "~0.5.13",
+    "pg": "~3.0.3"
   },
   "engines": {
     "node": "0.10.x",

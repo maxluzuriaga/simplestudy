@@ -1,0 +1,225 @@
+/*
+Title: Screen Styles
+Author: max@luzuriaga.com
+*/
+
+/* ---------------------------------------------------------------------------------------
+   Reset
+   --------------------------------------------------------------------------------------- */
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; font: inherit; vertical-align: baseline; text-decoration: none; }
+:focus { outline: 0; }
+body { line-height: 1; color: black; background: white; }
+nav ul { list-style: none; }
+ul { list-style-type: square; }
+table { border-collapse: separate; border-spacing: 0; }
+caption, th, td { text-align: left; font-weight: normal; }
+blockquote:before, q:before { content: '"'; }
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary { display: block; }
+html { -webkit-font-smoothing: antialiased; }
+pre { white-space: pre; white-space: pre-wrap; white-space: pre-line; word-wrap: break-word; }
+input, select { vertical-align: middle; }
+textarea { overflow: auto; }
+input[type="radio"] { vertical-align: text-bottom; }
+input[type="checkbox"] { vertical-align: bottom; }
+button, input, select, textarea { margin: 0; }
+time { display: block; }
+
+body {
+	background: url(../img/stardust.png) center top;
+	font-family: Helvetica, Arial, sans-serif;
+	padding: 50px 0;
+}
+
+a, a:visited {
+	text-decoration: none;
+	color: inherit;
+}
+
+.middle {
+	width: 940px;
+	margin: 0 auto;
+}
+
+header {
+	background: -moz-linear-gradient(top,  rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 97%, rgba(255,255,255,0) 98%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.05)), color-stop(97%,rgba(255,255,255,0)), color-stop(98%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(255,255,255,0.05) 0%,rgba(255,255,255,0) 97%,rgba(255,255,255,0) 98%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(255,255,255,0.05) 0%,rgba(255,255,255,0) 97%,rgba(255,255,255,0) 98%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(255,255,255,0.05) 0%,rgba(255,255,255,0) 97%,rgba(255,255,255,0) 98%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(255,255,255,0.05) 0%,rgba(255,255,255,0) 97%,rgba(255,255,255,0) 98%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0dffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+
+	position: fixed;
+	top: 0;
+	z-index: 500;
+
+	width: 100%;
+	background-color: #222;
+	border-bottom: 1px solid #000;
+	font-size: 1.2em;
+	color: #fff;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5)
+}
+
+header h1 {
+	padding: 15px 0;
+}
+
+header h1 {
+	float: left;
+	font-weight: bold;
+	text-shadow: 0 1px 0 #000;
+}
+
+header p.username {
+	float: right;
+}
+
+header p.username a {
+	display: block;
+	/*padding-top: 17px;*/
+	/*padding-bottom: 18px;*/
+	/*padding-left: 15px;*/
+	padding: 16px 15px 19px 15px;
+	font-size: 14px;
+	vertical-align: middle;
+	color: #bbb;
+	height: 100%;
+	border-right: 1px solid transparent;
+}
+
+header p.username a:hover {
+	background: rgba(0,0,0,0.7);
+	border-left: 1px solid #000;
+	border-right: 1px solid #000;
+}
+
+#main {
+	padding-top: 20px;
+}
+
+.sidebar {
+	width: 220px;
+	float: left;
+}
+
+.sidebar p {
+	color: #ddd;
+	line-height: 1.5em;
+}
+
+.paper-wrapper {
+	width: 700px;
+	float: right;
+}
+
+h2 {
+	text-align: center;
+	color: #fff;
+	font-weight: bold;
+	font-size: 1.6em;
+	text-shadow: 0 1px 0 #000;
+	margin-bottom: 20px;
+}
+
+.paper {
+	background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.05) 98%, rgba(0,0,0,0.05) 99%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(98%,rgba(0,0,0,0.05)), color-stop(99%,rgba(0,0,0,0.05))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.05) 98%,rgba(0,0,0,0.05) 99%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.05) 98%,rgba(0,0,0,0.05) 99%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.05) 98%,rgba(0,0,0,0.05) 99%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.05) 98%,rgba(0,0,0,0.05) 99%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#0d000000',GradientType=0 ); /* IE6-9 */
+	
+	border: 1px solid #fff;
+
+	padding: 40px;
+	background-color: #fff;
+	/*border: 1px solid #000;*/
+	box-shadow: 0 0 10px rgba(0,0,0,0.35)
+}
+
+.section {
+	border-bottom: 1px dashed #000;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+}
+
+.section:last-child {
+	border: 0;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+.section p {
+	line-height: 1.5em;
+	margin-bottom: 15px;
+}
+
+.section p:last-child {
+	margin-bottom: 0;
+}
+
+h3 {
+	font-weight: bold;
+	font-size: 1.25em;
+	line-height: 1.5em;
+	margin-bottom: 5px;
+}
+
+span.caret {
+	display: inline-block;;
+	width: 0;
+	height: 0;
+	margin-left: 2px;
+	vertical-align: middle;
+	border-top: 4px solid;
+	border-right: 4px solid transparent;
+	border-left: 4px solid transparent;
+}
+
+.group:before, .group:after {
+	content: "\0020";
+	display: block;
+	height: 0;
+	overflow: hidden;
+}
+.group:after { clear: both; }
+.group { zoom: 1; }
+
+@media screen and (max-width: 960px) {
+	header {
+		position: static;
+	}
+	body {
+		padding: 0;
+		padding-bottom: 20px;
+	}
+
+	.middle {
+		width: auto;
+		padding: 0 20px;
+	}
+	.sidebar {
+		float: none;
+		margin-bottom: 10px;
+		width: auto;
+	}
+	.paper-wrapper {
+		width: auto;
+		float: none;
+	}
+}
+
+@media screen and (max-width: 550px) {
+	body {
+		padding-bottom: 0;
+	}
+
+	.paper {
+		margin-left: -20px;
+		width: 100%;
+		padding: 20px;
+	}
+}

@@ -9,7 +9,7 @@ exports.up = function(db, callback) {
     },
     text: 'string',
     approved: 'boolean',
-    editedDate: 'timestamptz',
+    edited_date: 'timestamptz',
     guide_id: 'int',
     user_id: 'int'
   }, callback);

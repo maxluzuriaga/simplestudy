@@ -9,7 +9,7 @@ exports.up = function(db, callback) {
     },
     email: 'string',
     fullName: 'string',
-    authorizationToken: 'string'
+    authorization_token: 'string'
   }, callback);
 };
 

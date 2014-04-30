@@ -8,7 +8,7 @@ exports.up = function(db, callback) {
       primaryKey: true
     },
     name: 'string',
-    createdDate: 'timestamptz',
+    created_date: 'timestamptz',
     owner_id: 'int'
   }, callback);
 };

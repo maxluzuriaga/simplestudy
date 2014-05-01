@@ -1,26 +1,29 @@
 var express = require('express');
 
-// var pages_controller = require('../app/controllers/pages_controller');
+var guides_controller = require('../app/controllers/guides_controller'),
+    pages_controller = require('../app/controllers/pages_controller'),
+    users_controller = require('../app/controllers/users_controller');
 
 var helper = require('../lib/helper');
 
-// var Post = require('../app/models/post'),
-//     Category = require('../app/models/category');
-
-function adminOnly(request, response, next) {
-  if (request.user && request.user.admin) {
-    next();
-  } else {
-    helper.renderError(403, response);
-  }
-};
-
 // http://scotch.io/tutorials/javascript/learn-to-use-the-new-router-in-expressjs-4
 
-var router = express.Router();
+function routes(app) {
+  app.get('/', pages_controller.index);
 
-router.get('*', function(request, response) {
-  helper.renderError(404, response);
-});
+  app.get('/authlandingpage', users_controller.authorize);
 
-module.exports = router
+  var apiRouter = express.Router();
+
+  apiRouter.get('/guides', guides_controller.index);
+  apiRouter.get('/guides/:id', guides_controller.show);
+  apiRouter.post('/guides', guides_controller.create);
+
+  app.use('/api', apiRouter);
+
+  app.get('*', function(request, response) {
+    helper.renderError(404, response);
+  });
+}
+
+module.exports = routes;

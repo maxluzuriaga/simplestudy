@@ -1,6 +1,5 @@
 var express = require('express'),
-    passport = require('passport'),
-    GoogleStrategy = require('passport-google').Strategy;
+    passport = require('passport');
 
 var guides_controller = require('../app/controllers/guides_controller'),
     pages_controller = require('../app/controllers/pages_controller'),
@@ -9,19 +8,6 @@ var guides_controller = require('../app/controllers/guides_controller'),
 var helper = require('../lib/helper');
 
 // http://scotch.io/tutorials/javascript/learn-to-use-the-new-router-in-expressjs-4
-
-passport.use(new GoogleStrategy(
-  {
-    returnURL: 'http://localhost:5000/auth/return',
-    realm: 'http://localhost:5000/'
-  },
-  function(identifier, profile, done) {
-    console.log(identifier);
-    console.log(profile);
-    user = {};
-    done(null, user);
-  }
-));
 
 function routes(app) {
   app.get('/', pages_controller.index);

@@ -17,7 +17,9 @@
     "cookie-parser": "~1.0.1",
     "cookie-session": "~1.0.1",
     "csurf": "~1.1.0",
-    "db-migrate": "~0.6.4"
+    "db-migrate": "~0.6.4",
+    "passport": "~0.2.0",
+    "passport-google": "~0.3.0"
   },
   "engines": {
     "node": "0.10.x",

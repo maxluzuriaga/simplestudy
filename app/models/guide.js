@@ -10,6 +10,9 @@ var Guide = bookshelf.Model.extend({
   owner: function() {
     return this.belongsTo(User, 'owner_id');
   },
+  users: function() {
+    return this.hasMany(User).through(Section);
+  },
   sections: function() {
     return this.hasMany(Section);
   }

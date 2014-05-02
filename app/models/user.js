@@ -1,8 +1,5 @@
 var bookshelf = require('bookshelf').PG;
 
-var Guide = require('./guide'),
-    Section = require('./section');
-
 var User = bookshelf.Model.extend({
   tableName: 'users',
   idAttribute: 'id',
@@ -16,3 +13,6 @@ var User = bookshelf.Model.extend({
 });
 
 module.exports = User;
+
+var Guide = require('./guide'),
+    Section = require('./section');

@@ -9,15 +9,11 @@ passport.use(new GoogleStrategy(
     realm: 'http://localhost:5000/'
   },
   function(identifier, profile, done) {
-    console.log(profile);
     new User({identifier: identifier}).fetch().then(function(user) {
       if (user) {
         // log in user
-        console.log(user.toJSON());
         done(null, user);
       } else {
-        console.log("CREATING USER");
-        console.log(identifier + profile.displayName);
         var shasum = crypto.createHash('sha1');
         shasum.update(identifier + profile.displayName);
         var token = shasum.digest('hex');

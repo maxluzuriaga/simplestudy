@@ -11,6 +11,7 @@ var helper = require('../lib/helper');
 
 function routes(app) {
   app.get('/', pages_controller.index);
+  app.get('/api-client', pages_controller.client);
 
   app.get('/auth', passport.authenticate('google'));
   app.get('/auth/return', passport.authenticate('google', {

@@ -1,0 +1,21 @@
+<% var title = "SimpleStudy" %>
+<% include ../layouts/head %>
+
+<input type="text" name="url" value="/api/"></input>
+<button onclick="sendrequest()">Request with token</button>
+<br />
+<pre id="response">{}</pre>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+	function sendrequest() {
+		$.ajax({
+			url: $("input[name=url]").val(),
+			headers: {"Authorization-Token": "d7adc43d06571a4b463b9e4ba5d4e7a9b7e90855"}
+		}).done(function(data) {
+			$("#response").html(JSON.stringify(data));
+		});
+	}
+</script>
+
+<% include ../layouts/foot %>

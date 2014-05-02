@@ -1,17 +1,41 @@
 <% var title = "SimpleStudy" %>
 <% include ../layouts/head %>
 
-<input type="text" name="url" value="/api/"></input>
-<button onclick="sendrequest()">Request with token</button>
-<br />
+<div style="width:50%;margin:0;padding:0;float:left">
+	<input type="text" name="geturl" value="/api/"></input>
+	<button onclick="getrequest()">GET</button>
+</div>
+
+<div style="width:49%;margin:0;padding:0;float:right;border-left:1px solid black;">
+	<input type="text" name="posturl" value="/api/"></input>
+	<button onclick="postrequest()">POST</button>
+	<br>
+	<textarea id="data" style="width:99%;height:70px;"></textarea>
+</div>
+
+<hr style="clear:both" />
 <pre id="response">{}</pre>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript">
-	function sendrequest() {
+	function getrequest() {
 		$.ajax({
-			url: $("input[name=url]").val(),
+			url: $("input[name=geturl]").val(),
 			headers: {"Authorization-Token": "d7adc43d06571a4b463b9e4ba5d4e7a9b7e90855"}
+		}).done(function(data) {
+			$("#response").html(JSON.stringify(data, null, '\t'));
+		});
+	}
+
+	function postrequest() {
+		$.ajax({
+			method: "POST",
+			url: $("input[name=posturl]").val(),
+			headers: {
+				"Authorization-Token": "d7adc43d06571a4b463b9e4ba5d4e7a9b7e90855",
+				'X-CSRF-Token': $("meta[name=csrf-token").attr("content")
+			},
+			data: $("#data").val()
 		}).done(function(data) {
 			$("#response").html(JSON.stringify(data, null, '\t'));
 		});

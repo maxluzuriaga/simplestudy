@@ -4,23 +4,27 @@ var User = require('../models/user')
 
 function index(request, response) {
   // all guides associated with logged-in user
-  request.user.load(['guides', 'sections']).then(function(user) {
-    var guides = user.related('guides').toJSON();
-    user.related('sections').load(['guide']).then(function(sections) {
-      var sharedGuides = sections.models.map(function(section) {
-        var obj = section.related('guide').toJSON();
-        obj.sectionApproved = section.get('approved');
-
-        return obj;
-      });
-
-      var resp = {
-        guides: guides,
-        sharedGuides: sharedGuides
-      };
-
-      response.json(200, resp);
+  request.user.load(['guides', 'sections', 'sections.guide', 'sections.guide.owner']).then(function(user) {
+    var guides = user.related('guides').models.map(function(guide) {
+      return guide.omit('owner_id');
     });
+
+    var sections = user.related('sections');
+    var sharedGuides = sections.models.map(function(section) {
+      var obj = section.related('guide').omit('owner_id');
+
+      obj.owner = section.related('guide').related('owner').renderJSON();
+      obj.sectionApproved = section.get('approved');
+
+      return obj;
+    });
+
+    var resp = {
+      guides: guides,
+      sharedGuides: sharedGuides
+    };
+
+    response.json(200, resp);
   });
 }
 

@@ -98,15 +98,13 @@ function create(request, response) {
       var sectioninfo = JSON.parse(request.body.sections);
       _createSections(sectioninfo, 0, guide.id, function(success) {
         if (success) {
-          guide.load(['owner', 'sections']).then(function(guide) {
-            response.json(200, guide.toJSON());
-          });
+          response.json(200, {id: guide.id});
         } else {
-
+          response.json(400, {});
         }
       });
     } else {
-
+      response.json(400, {});
     }
   });
 }

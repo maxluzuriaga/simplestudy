@@ -9,6 +9,10 @@ var User = bookshelf.Model.extend({
   },
   sections: function() {
     return this.hasMany(Section);
+  },
+
+  renderJSON: function() {
+  	return this.omit(['id', 'authorization_token', 'identifier']);
   }
 });
 

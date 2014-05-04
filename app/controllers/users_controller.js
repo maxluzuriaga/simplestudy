@@ -8,19 +8,23 @@ function authorize(identifier, profile, done) {
       // log in user
       done(null, user);
     } else {
-      var shasum = crypto.createHash('sha1');
-      shasum.update(identifier + profile.displayName);
-      var token = shasum.digest('hex');
+      crypto.randomBytes(10, function(ex, buf) {
+        var randomString = buf.toString('hex');
 
-      user = new User({
-        identifier: identifier,
-        fullName: profile.displayName,
-        email: profile.emails[0].value,
-        authorization_token: token
-      });
+        var shasum = crypto.createHash('sha1');
+        shasum.update(identifier + profile.displayName + randomString);
+        var token = shasum.digest('hex');
 
-      user.save().then(function(user) {
-        done(null, user);
+        user = new User({
+          identifier: identifier,
+          fullName: profile.displayName,
+          email: profile.emails[0].value,
+          authorization_token: token
+        });
+
+        user.save().then(function(user) {
+          done(null, user);
+        });
       });
     }
   });

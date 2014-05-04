@@ -3,7 +3,8 @@ var express = require('express'),
 
 var guides_controller = require('../app/controllers/guides_controller'),
     pages_controller = require('../app/controllers/pages_controller'),
-    users_controller = require('../app/controllers/users_controller');
+    users_controller = require('../app/controllers/users_controller'),
+    Guide = require('../app/models/guide');
 
 var helper = require('../lib/helper');
 
@@ -29,6 +30,19 @@ function routes(app) {
   }));
 
   var apiRouter = express.Router();
+
+  apiRouter.param('guide_id', function(request, response, next, id) {
+    id = parseInt(id);
+
+    new Guide({id: id}).fetch().then(function(guide) {
+      if (guide) {
+        request.guide = guide;
+        next();
+      } else {
+        helper.renderError(404, response);
+      }
+    });
+  });
 
   apiRouter.get('/guides', userOnly, guides_controller.index);
   apiRouter.post('/guides', userOnly, guides_controller.create);

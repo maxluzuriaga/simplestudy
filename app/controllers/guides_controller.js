@@ -4,7 +4,24 @@ var User = require('../models/user')
 
 function index(request, response) {
   // all guides associated with logged-in user
-  response.json(200, request.user.toJSON());
+  request.user.load(['guides', 'sections']).then(function(user) {
+    var guides = user.related('guides').toJSON();
+    user.related('sections').load(['guide']).then(function(sections) {
+      var sharedGuides = sections.models.map(function(section) {
+        var obj = section.related('guide').toJSON();
+        obj.sectionApproved = section.get('approved');
+
+        return obj;
+      });
+
+      var resp = {
+        guides: guides,
+        sharedGuides: sharedGuides
+      };
+
+      response.json(200, resp);
+    });
+  });
 }
 
 function show(request, response) {

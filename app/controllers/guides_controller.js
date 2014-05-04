@@ -27,6 +27,28 @@ function index(request, response) {
 function show(request, response) {
   // show details of / sections of guide if user has access to it
   // don't include section texts unless user is owner or has approved section in guide
+  request.guide.load(['owner', 'sections', 'sections.user']).then(function(guide) {
+    if (guide.related('owner').id == request.user.id) {
+      response.json(200, request.guide.renderJSON({includeSectionText: true}));
+    } else {
+      var allowedToView = false;
+      var includeText = false;
+
+      guide.related('sections').models.forEach(function(section) {
+        if (section.get('user_id') == request.user.id) {
+          allowedToView = true;
+
+          if (section.get('approved') == true) {
+            includeText = true;
+          }
+        }
+      });
+
+      if (allowedToView) {
+        response.json(200, request.guide.renderJSON({includeSectionText: includeText}));
+      }
+    }
+  });
 }
 
 function _createSections(arr, index, guideid, callback) {

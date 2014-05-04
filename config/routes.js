@@ -9,6 +9,14 @@ var helper = require('../lib/helper');
 
 // http://scotch.io/tutorials/javascript/learn-to-use-the-new-router-in-expressjs-4
 
+function userOnly(request, response, next) {
+  if (request.user) {
+    next();
+  } else {
+    helper.renderError(403, response);
+  }
+}
+
 function routes(app) {
   app.get('/', pages_controller.index);
   app.get('/api-client', pages_controller.client);
@@ -22,9 +30,9 @@ function routes(app) {
 
   var apiRouter = express.Router();
 
-  apiRouter.get('/guides', guides_controller.index);
-  apiRouter.get('/guides/:id', guides_controller.show);
-  apiRouter.post('/guides', guides_controller.create);
+  apiRouter.get('/guides', userOnly, guides_controller.index);
+  apiRouter.post('/guides', userOnly, guides_controller.create);
+  apiRouter.get('/guides/:guide_id', userOnly, guides_controller.show);
 
   app.use('/api', apiRouter);
 

@@ -21,7 +21,7 @@
 	function getrequest() {
 		$.ajax({
 			url: $("input[name=geturl]").val(),
-			headers: {"Authorization-Token": "d7adc43d06571a4b463b9e4ba5d4e7a9b7e90855"}
+			headers: {"Authorization-Token": "d5a28d2574895978ef2c1bcff9cdff9963cebdba"}
 		}).done(function(data) {
 			$("#response").html(JSON.stringify(data, null, '\t'));
 		});
@@ -32,7 +32,7 @@
 			method: "POST",
 			url: $("input[name=posturl]").val(),
 			headers: {
-				"Authorization-Token": "d7adc43d06571a4b463b9e4ba5d4e7a9b7e90855",
+				"Authorization-Token": "d5a28d2574895978ef2c1bcff9cdff9963cebdba",
 				'X-CSRF-Token': $("meta[name=csrf-token").attr("content")
 			},
 			data: $("#data").val()

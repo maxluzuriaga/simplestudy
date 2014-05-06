@@ -16,12 +16,18 @@ var Guide = bookshelf.Model.extend({
 
     obj.owner = this.related('owner').omit(['id', 'authorization_token', 'identifier']);
 
-    var omit = ['id', 'guide_id', 'user_id']
-    if (!options.includeSectionText) {
-      omit.push('text');
-    }
+    var omitIncludeText = ['id', 'guide_id', 'user_id'];
+    var omitNoText = ['id', 'guide_id', 'user_id', 'text'];
 
     obj.sections = this.related('sections').models.map(function(section) {
+      var omit;
+
+      if (options.includeSectionText || options.userID == section.get('user_id')) {
+        omit = omitIncludeText;
+      } else {
+        omit = omitNoText;
+      }
+
       var obj = section.omit(omit);
       obj.user = section.related('user').renderJSON();
 

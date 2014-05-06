@@ -49,7 +49,7 @@ function show(request, response) {
       });
 
       if (allowedToView) {
-        response.json(200, request.guide.renderJSON({includeSectionText: includeText}));
+        response.json(200, request.guide.renderJSON({includeSectionText: includeText, userID: request.user.id}));
       }
     }
   });

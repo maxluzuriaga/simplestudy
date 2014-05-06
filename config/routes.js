@@ -4,8 +4,10 @@ var express = require('express'),
 
 var guides_controller = require('../app/controllers/guides_controller'),
     pages_controller = require('../app/controllers/pages_controller'),
+    sections_controller = require('../app/controllers/sections_controller'),
     users_controller = require('../app/controllers/users_controller'),
-    Guide = require('../app/models/guide');
+    Guide = require('../app/models/guide'),
+    Section = require('../app/models/section');
 
 var helper = require('../lib/helper');
 
@@ -53,9 +55,25 @@ function routes(app) {
     });
   });
 
+  apiRouter.param('section_id', function(request, response, next, id) {
+    id = parseInt(id);
+
+    new Section({id: id}).fetch().then(function(section) {
+      if (section) {
+        request.section = section;
+        next();
+      } else {
+        helper.renderError(404, response);
+      }
+    });
+  });
+
   apiRouter.get('/guides', userOnly, guides_controller.index);
   apiRouter.post('/guides', userOnly, guides_controller.create);
   apiRouter.get('/guides/:guide_id', userOnly, guides_controller.show);
+
+  apiRouter.post('/sections/:section_id', userOnly, sections_controller.update);
+  apiRouter.post('/sections/:section_id/approve', userOnly, sections_controller.approve);
 
   app.use('/api', apiRouter);
 

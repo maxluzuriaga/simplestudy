@@ -25,5 +25,18 @@ function approve(request, response) {
   }
 }
 
+function disapprove(request, response) {
+  var canApprove = (request.user.id == request.section.related('guide').get('owner_id'));
+
+  if (canApprove) {
+    request.section.save({approved: false}, {patch: true}).then(function(section) {
+      response.json(200, {successful: true});
+    });
+  } else {
+    helper.renderError(403, response);
+  }
+}
+
 exports.update = update;
 exports.approve = approve;
+exports.disapprove = disapprove;

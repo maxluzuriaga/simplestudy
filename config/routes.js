@@ -76,6 +76,7 @@ function routes(app) {
 
   apiRouter.post('/sections/:section_id', userOnly, sections_controller.update);
   apiRouter.post('/sections/:section_id/approve', userOnly, sections_controller.approve);
+  apiRouter.post('/sections/:section_id/disapprove', userOnly, sections_controller.disapprove);
 
   app.use('/api', apiRouter);
 

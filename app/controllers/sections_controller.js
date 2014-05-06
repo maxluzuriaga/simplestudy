@@ -9,12 +9,20 @@ function update(request, response) {
       response.json(200, {successful: true});
     });
   } else {
-    helper.renderError(404, response);
+    helper.renderError(403, response);
   }
 }
 
 function approve(request, response) {
+  var canApprove = (request.user.id == request.section.related('guide').get('owner_id'));
 
+  if (canApprove) {
+    request.section.save({approved: true}, {patch: true}).then(function(section) {
+      response.json(200, {successful: true});
+    });
+  } else {
+    helper.renderError(403, response);
+  }
 }
 
 exports.update = update;

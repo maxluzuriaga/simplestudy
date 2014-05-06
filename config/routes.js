@@ -60,8 +60,10 @@ function routes(app) {
 
     new Section({id: id}).fetch().then(function(section) {
       if (section) {
-        request.section = section;
-        next();
+        section.load(['guide']).then(function(section) {
+          request.section = section;
+          next();
+        });
       } else {
         helper.renderError(404, response);
       }

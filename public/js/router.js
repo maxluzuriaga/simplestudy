@@ -13,4 +13,5 @@ app.router.on('route:list', function() {
 	listview.render();
 });
 
-Backbone.history.start();
+Backbone.history.start({pushState: true});
+$(document.body).clickify();

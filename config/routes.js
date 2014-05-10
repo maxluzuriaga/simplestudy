@@ -81,9 +81,7 @@ function routes(app) {
 
   app.use('/api', apiRouter);
 
-  app.get('*', function(request, response) {
-    helper.renderError(404, response);
-  });
+  app.get('*', pages_controller.index); // Catch-all to enable backbone url routing
 }
 
 module.exports = routes;

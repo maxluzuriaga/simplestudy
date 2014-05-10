@@ -18,6 +18,7 @@ app.ListView = Backbone.View.extend({
 		var _render = function() {
 			var template = _.template($("#list-view-template").html(), { mine: mine.models, shared: shared.models });
 			this.$el.html(template);
+			$(document.body).clickify();
 		}.bind(this);
 
 		mine.fetch({success: function() {

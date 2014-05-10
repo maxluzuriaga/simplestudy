@@ -1,9 +1,9 @@
 function index(request, response) {
-  // serve landing page if logged in, otherwise serve backbone app
+  response.render('pages/index');
 }
 
 function client(request, response) {
-	response.render('pages/api-client');
+  response.render('pages/api-client');
 }
 
 exports.index = index;

@@ -32,10 +32,13 @@
       // Make the call to Backbone.History
       // Backbone will call pushState, update the hash or change window.location depending on what our browser supports
       // Regardless, the part you should care about is that your routes are being called.
-      Backbone.history.navigate(getFragment(url), { trigger: true });
-      
-      event.preventDefault();
-      return false;
+
+      if (history.pushState) {
+        Backbone.history.navigate(getFragment(url), { trigger: true });
+        
+        event.preventDefault();
+        return false;
+      }
     });
     
     anchorTags.addClass('no-click'); // Mark tags we've already added our event handler to

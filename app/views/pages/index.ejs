@@ -25,17 +25,16 @@
 		<div id="main">
 			<h2 class="list-title"><span>My Guides:</span></h2>
 			<ul class="guide-list owned">
-				<li><a href="#/guides/1" class="group"><strong>Bio 1 Adv.</strong></a></li>
-				<li><a href="#/guides/2" class="group"><strong>Physics 2 Adv.</strong></a></li>
-				<li><a href="#/guides/3" class="group"><strong>Calc 2 Adv.</strong></a></li>
-				<li><a href="#/guides/4" class="group"><strong>French Revolution</strong></a></li>
+				{{ _.each(mine, function(guide) { }}
+					<li><a href="#/guides/{{= guide.get('id') }}" class="group"><strong>{{= guide.get('name') }}</strong></a></li>
+				{{ }); }}
 			</ul>
 
 			<h2 class="list-title"><span>Shared With Me:</span></h2>
 			<ul class="guide-list">
-				<li class="approved"><a href="#/guides/5" class="group"><strong>Mechanics</strong> <span class="owner-name">Max Luzuriaga</span></a></li>
-				<li><a href="#/guides/6" class="group"><strong>Frankenstein</strong> <span class="owner-name">Colin Roberts</span></a></li>
-				<li><a href="#/guides/7" class="group"><strong>The Third Reich</strong> <span class="owner-name">Richard Stallman</span></a></li>
+				{{ _.each(shared, function(guide) { }}
+					<li class="{{= guide.sectionApproved ? 'approved' : '' }}"><a href="#/guides/{{= guide.get('id') }}" class="group"><strong>{{= guide.get('name') }}</strong> <span class="owner-name">{{= guide.get('owner').fullName }}</span></a></li>
+				{{ }); }}
 			</ul>
 		</div>
 		<aside id="creation-wrapper">

@@ -33,7 +33,7 @@
 			<h2 class="list-title"><span>Shared With Me:</span></h2>
 			<ul class="guide-list">
 				{{ _.each(shared, function(guide) { }}
-					<li class="{{= guide.sectionApproved ? 'approved' : '' }}"><a href="#/guides/{{= guide.get('id') }}" class="group"><strong>{{= guide.get('name') }}</strong> <span class="owner-name">{{= guide.get('owner').fullName }}</span></a></li>
+					<li class="{{= guide.get('sectionApproved') ? 'approved' : '' }}"><a href="#/guides/{{= guide.get('id') }}" class="group"><strong>{{= guide.get('name') }}</strong> <span class="owner-name">{{= guide.get('owner').fullName }}</span></a></li>
 				{{ }); }}
 			</ul>
 		</div>

@@ -5,9 +5,15 @@ app.ListView = Backbone.View.extend({
 	render: function() {
 		var mine = new app.Guides();
 		mine.context = "mine";
+		mine.comparator = function(item) {
+			return item.get('created_date');
+		};
 
 		var shared = new app.Guides();
 		shared.context = "shared";
+		shared.comparator = function(item) {
+			return item.get('edited_date');
+		};
 
 		var _render = function() {
 			var template = _.template($("#list-view-template").html(), { mine: mine.models, shared: shared.models });

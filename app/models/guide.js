@@ -16,8 +16,8 @@ var Guide = bookshelf.Model.extend({
 
     obj.owner = this.related('owner').omit(['id', 'authorization_token', 'identifier']);
 
-    var omitIncludeText = ['id', 'guide_id', 'user_id'];
-    var omitNoText = ['id', 'guide_id', 'user_id', 'text'];
+    var omitIncludeText = ['guide_id', 'user_id'];
+    var omitNoText = ['guide_id', 'user_id', 'text'];
 
     obj.sections = this.related('sections').models.map(function(section) {
       var omit;

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="description" content="The best place for Penn students to buy, sell, trade, and share." />
+<meta name="author" content="Max Luzuriaga" />
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+
+<link rel="shortcut icon" href="favicon.ico"/>
+
+<title>Test site thing</title>
+
+<link rel="stylesheet" media="screen" href="css/screen.css" />
+
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="css/froala_editor.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<header>
+	<div class="middle group">
+		<h1>
+			<a href="#">Study Guide App</a>
+		</h1>
+		<p class="username">
+			<a href="#">
+				Max Luzuriaga 
+				<span class="caret"></span>
+			</a>
+		</p>
+	</div>
+</header>
+
+<div class="middle group" id="main-wrapper">
+	<div class="body-wrapper group">
+		<div id="main-shadow"></div>
+		<div id="main">
+			<h2 class="list-title"><span>My Guides:</span></h2>
+			<ul class="guide-list owned">
+				<li><a href="#/guides/1" class="group"><strong>Bio 1 Adv.</strong></a></li>
+				<li><a href="#/guides/2" class="group"><strong>Physics 2 Adv.</strong></a></li>
+				<li><a href="#/guides/3" class="group"><strong>Calc 2 Adv.</strong></a></li>
+				<li><a href="#/guides/4" class="group"><strong>French Revolution</strong></a></li>
+			</ul>
+
+			<h2 class="list-title"><span>Shared With Me:</span></h2>
+			<ul class="guide-list">
+				<li class="approved"><a href="#/guides/5" class="group"><strong>Mechanics</strong> <span class="owner-name">Max Luzuriaga</span></a></li>
+				<li><a href="#/guides/6" class="group"><strong>Frankenstein</strong> <span class="owner-name">Colin Roberts</span></a></li>
+				<li><a href="#/guides/7" class="group"><strong>The Third Reich</strong> <span class="owner-name">Richard Stallman</span></a></li>
+			</ul>
+		</div>
+		<aside id="creation-wrapper">
+			<a href="#" class="new-button">+ New Guide</a>
+
+			<div id="new-guide-form">
+				<h2 class="center-title"><span>Create a new Study Guide</span></h2>
+				<form id="new-guide">
+					<p class="input name">
+						<input type="text" name="name" placeholder="Name" />
+					</p>
+					<p class="input section group">
+						<a class="delete-section" href="#">x</a>
+						<input type="text" class="section-name" name="name0" placeholder="Section Name" />
+						<input type="email" class="section-email" name="email0" placeholder="User (email)" />
+					</p>
+					<p class="input section">
+						<a class="delete-section" href="#">x</a>
+						<input type="text" class="section-name" name="name0" placeholder="Section Name" />
+						<input type="email" class="section-email" name="email0" placeholder="User (email)" />
+					</p>
+					<a href="#" id="new-section">Add Section</a>
+				</form>
+			</div>
+		</aside>
+	</div>
+</div>
+
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="js/froala_editor.min.js"></script>
+
+<script>
+$(function() {
+	$(".new-button").click(function() {
+		$(".new-button").css({position: "absolute"});
+		$(".new-button").fadeOut(150);
+		$("#new-guide-form").css({display: "block", opacity: 0.3});
+		$("#new-guide-form").animate({opacity: 1.0}, function() {
+			$(this).css("overflow", "visible");
+		});
+		$("#main").addClass("hidden");
+		$("#main").animate({width: 530, opacity: 0.3});
+		$("#creation-wrapper").animate({width: 370});
+	});
+});
+</script>
+
+</body>
+</html>

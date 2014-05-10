@@ -3,6 +3,7 @@ var app = app || {};
 var Router = Backbone.Router.extend({
 	routes: {
 		"": "list",
+		"guides/:id": "show-guide",
 		"new": "new-guide",
 
 		"*notFound": "error"
@@ -28,6 +29,15 @@ app.router.on('route:list', function() {
 		listview = new app.ListView();
 		listview.render();
 	}
+});
+
+app.router.on('route:show-guide', function(id) {
+	var guideview = new app.GuideView();
+	guideview.guide = new app.Guide({id: id});
+
+	guideview.guide.fetch({success: function() {
+		guideview.render();
+	}});
 });
 
 app.router.on('route:new-guide', function(page) {

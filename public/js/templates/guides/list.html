@@ -1,0 +1,41 @@
+<div class="body-wrapper group">
+	<div id="main-shadow"></div>
+	<div id="main">
+		<h2 class="list-title"><span>My Guides:</span></h2>
+		<ul class="guide-list owned">
+			{{ _.each(mine, function(guide) { }}
+				<li><a href="/guides/{{= guide.get('id') }}" class="group"><strong>{{= guide.get('name') }}</strong></a></li>
+			{{ }); }}
+		</ul>
+
+		<h2 class="list-title"><span>Shared With Me:</span></h2>
+		<ul class="guide-list">
+			{{ _.each(shared, function(guide) { }}
+				<li class="{{= guide.get('sectionApproved') ? 'approved' : '' }}"><a href="/guides/{{= guide.get('id') }}" class="group"><strong>{{= guide.get('name') }}</strong> <span class="owner-name">{{= guide.get('owner').fullName }}</span></a></li>
+			{{ }); }}
+		</ul>
+	</div>
+	<aside id="creation-wrapper">
+		<a href="/new" class="new-button">+ New Guide</a>
+
+		<div id="new-guide-form">
+			<h2 class="center-title"><span>Create a new Study Guide</span></h2>
+			<form id="new-guide">
+				<p class="input name">
+					<input type="text" name="name" placeholder="Name" />
+				</p>
+				<p class="input section group">
+					<a class="delete-section" href="#">x</a>
+					<input type="text" class="section-name" name="name0" placeholder="Section Name" />
+					<input type="email" class="section-email" name="email0" placeholder="User (email)" />
+				</p>
+				<p class="input section">
+					<a class="delete-section" href="#">x</a>
+					<input type="text" class="section-name" name="name0" placeholder="Section Name" />
+					<input type="email" class="section-email" name="email0" placeholder="User (email)" />
+				</p>
+				<a href="#" id="new-section">Add Section</a>
+			</form>
+		</div>
+	</aside>
+</div>

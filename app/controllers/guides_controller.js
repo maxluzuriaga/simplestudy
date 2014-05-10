@@ -22,6 +22,7 @@ function sharedGuides(request, response) {
 
       obj.owner = section.related('guide').related('owner').renderJSON();
       obj.sectionApproved = section.get('approved');
+      obj.edited_date = section.get('edited_date');
 
       return obj;
     });

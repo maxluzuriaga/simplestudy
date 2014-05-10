@@ -2,13 +2,20 @@ var User = require('../models/user')
     Guide = require('../models/guide'),
     Section = require('../models/section');
 
-function index(request, response) {
-  // all guides associated with logged-in user
-  request.user.load(['guides', 'sections', 'sections.guide', 'sections.guide.owner']).then(function(user) {
+function myGuides(request, response) {
+  // all guides owned by logged-in user
+  request.user.load(['guides']).then(function(user) {
     var guides = user.related('guides').models.map(function(guide) {
       return guide.omit('owner_id');
     });
 
+    response.json(200, guides);
+  });
+}
+
+function sharedGuides(request, response) {
+  // all guides shared with logged-in user
+  request.user.load(['sections', 'sections.guide', 'sections.guide.owner']).then(function(user) {
     var sections = user.related('sections');
     var sharedGuides = sections.models.map(function(section) {
       var obj = section.related('guide').omit('owner_id');
@@ -19,12 +26,7 @@ function index(request, response) {
       return obj;
     });
 
-    var resp = {
-      guides: guides,
-      sharedGuides: sharedGuides
-    };
-
-    response.json(200, resp);
+    response.json(200, sharedGuides);
   });
 }
 
@@ -109,6 +111,7 @@ function create(request, response) {
   });
 }
 
-exports.index = index;
+exports.myGuides = myGuides;
+exports.sharedGuides = sharedGuides;
 exports.show = show;
 exports.create = create;

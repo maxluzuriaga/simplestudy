@@ -70,7 +70,8 @@ function routes(app) {
     });
   });
 
-  apiRouter.get('/guides', userOnly, guides_controller.index);
+  apiRouter.get('/guides/mine', userOnly, guides_controller.myGuides);
+  apiRouter.get('/guides/shared', userOnly, guides_controller.sharedGuides);
   apiRouter.post('/guides', userOnly, guides_controller.create);
   apiRouter.get('/guides/:guide_id', userOnly, guides_controller.show);
 

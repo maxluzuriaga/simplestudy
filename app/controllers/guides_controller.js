@@ -70,6 +70,7 @@ function _createSections(arr, index, guideid, callback) {
       var section = new Section({
         user_id: user.id,
         guide_id: guideid,
+        index: info.index,
         name: info.name,
         edited_date: new Date()
       });

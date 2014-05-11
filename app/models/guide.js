@@ -19,7 +19,15 @@ var Guide = bookshelf.Model.extend({
     var omitIncludeText = ['guide_id', 'user_id'];
     var omitNoText = ['guide_id', 'user_id', 'text'];
 
-    obj.sections = this.related('sections').models.map(function(section) {
+    var sections = this.related('sections');
+
+    sections.comparator = function(section) {
+      return section.get('index');
+    };
+
+    sections.sort();
+
+    obj.sections = sections.models.map(function(section) {
       var omit;
 
       if (options.includeSectionText || options.userID == section.get('user_id')) {

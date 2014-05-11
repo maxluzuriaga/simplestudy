@@ -1,12 +1,12 @@
 var app = app || {};
 
 app.GuideView = Backbone.View.extend({
-	el: "#main-wrapper",
-	render: function() {
+	render: function(callback) {
 		app.getTemplate("guides/show", function(file) {
 			var template = _.template(file, { guide: this.guide });
-			this.$el.html(template);
-			$(document.body).clickify();
+			$(this.el).html(template);
+
+			callback(this);
 		}.bind(this));
 	}
 });

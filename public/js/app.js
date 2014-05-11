@@ -28,6 +28,15 @@ app.getTemplate = function(file, handler) {
 	}
 }
 
+Backbone.View.prototype.close = function() {
+	if (this.beforeClose) {
+		this.beforeClose();
+	}
+
+	this.remove();
+	this.unbind();
+}
+
 _.templateSettings = {
 	evaluate:    /\{\{(.+?)\}\}/g,
     interpolate: /\{\{=(.+?)\}\}/g,

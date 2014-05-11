@@ -18,6 +18,18 @@ var Router = Backbone.Router.extend({
 				return false;
 			}
 		}
+	},
+
+	showView: function(selector, view) {
+		if (this.currentView) {
+			this.currentView.close();
+		}
+
+		this.currentView = view;
+		view.render(function(v) {
+			$(selector).html(v.el);
+			$(document.body).clickify();
+		});
 	}
 });
 
@@ -29,7 +41,7 @@ app.router.on('route:login', function() {
 
 app.router.on('route:list', function() {
 	var listview = new app.ListView();
-	listview.render();
+	app.router.showView("#main-wrapper", listview);
 });
 
 app.router.on('route:show-guide', function(id) {
@@ -37,7 +49,7 @@ app.router.on('route:show-guide', function(id) {
 	guideview.guide = new app.Guide({id: id});
 
 	guideview.guide.fetch({success: function() {
-		guideview.render();
+		app.router.showView("#main-wrapper", guideview);
 	}});
 });
 

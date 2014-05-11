@@ -1,14 +1,12 @@
 var app = app || {};
 
 app.ListView = Backbone.View.extend({
-	el: "#main-wrapper",
-
 	events: {
 		"click a.first-guide": "showform",
 		"click #main.hidden": "hideform"
 	},
 
-	render: function() {
+	render: function(callback) {
 		var mine = new app.Guides();
 		mine.context = "mine";
 		mine.comparator = function(item) {
@@ -24,13 +22,16 @@ app.ListView = Backbone.View.extend({
 		var _render = function() {
 			app.getTemplate("guides/list", function(file) {
 				var template = _.template(file, { mine: mine.models, shared: shared.models });
-				this.$el.html(template);
-				this.rendered = true;
-				$(document.body).clickify();
+				$(this.el).html(template);
 
 				this.newGuide = new app.NewGuideView();
 				this.newGuide.guide = new app.Guide();
-				this.newGuide.render();
+
+				this.newGuide.render(function(v) {
+					$(this.el).find("#creation-wrapper").html(v.el);
+
+					callback(this);
+				}.bind(this));
 			}.bind(this));
 		}.bind(this);
 
@@ -47,6 +48,10 @@ app.ListView = Backbone.View.extend({
 				_render();
 			}
 		}});
+	},
+
+	beforeClose: function() {
+		this.newGuide.close();
 	},
 
 	showform: function(e) {

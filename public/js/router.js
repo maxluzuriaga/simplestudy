@@ -5,12 +5,28 @@ var Router = Backbone.Router.extend({
 		"": "list",
 		"guides/:id": "show-guide",
 		"new": "new-guide",
+		"login": "login",
 
 		"*notFound": "error"
+	},
+
+	before: {
+		"*any": function(fragment, args, next) {
+			if ($.cookie('authorization_token') ||  fragment == "login") {
+				next();
+			} else {
+				app.router.navigate("login", { trigger: true });
+				return false;
+			}
+		}
 	}
 });
 
 app.router = new Router();
+
+app.router.on('route:login', function() {
+	alert("yo");
+});
 
 var listview;
 

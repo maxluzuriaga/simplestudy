@@ -34,11 +34,7 @@ function routes(app) {
   app.get('/api-client', pages_controller.client);
 
   app.get('/auth', passport.authenticate('google'));
-  app.get('/auth/return', passport.authenticate('google', {
-    session: false,
-    successRedirect: '/',
-    failureRedirect: '/failure'
-  }));
+  app.get('/auth/return', passport.authenticate('google', { session: false }), users_controller.login);
 
   var apiRouter = express.Router();
 

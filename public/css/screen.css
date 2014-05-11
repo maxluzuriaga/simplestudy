@@ -154,12 +154,27 @@ h2.center-title {
 	text-align: center;
 }
 
+.empty-message {
+	margin-bottom: 20px;
+	text-align: center;
+	padding: 10px;
+	background: red;
+	background: rgba(0,0,0,0.05);
+	border: 1px solid rgba(0,0,0,0.2);
+	width: 748px;
+}
+
+.first-guide {
+	color: #357ebd;
+	text-decoration: underline;
+}
+
 .guide-list {
 	list-style-type: none;
 	margin-bottom: 20px;
 }
 
-.guide-list:last-child {
+.guide-list:last-child, .empty-message:last-child {
 	margin-bottom: 0;
 }
 
@@ -171,8 +186,6 @@ background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.05) 98%,rgba(
 background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.05) 98%,rgba(0,0,0,0.05) 99%);
 background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.05) 98%,rgba(0,0,0,0.05) 99%); 
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#0d000000',GradientType=0 );
-
-
 
 	font-size: 18px;
 	width: 768px;

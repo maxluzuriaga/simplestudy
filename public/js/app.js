@@ -6,7 +6,7 @@ $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
 		if (!options.beforeSend) {
 			options.beforeSend = function(xhr) {
 				xhr.setRequestHeader('Authorization-Token', $.cookie('authorization_token'));
-				xhr.setRequestHeader('X-CSRF-Token', $("meta[name=csrf-token").attr("content"));
+				xhr.setRequestHeader('X-CSRF-Token', $("meta[name=csrf-token]").attr("content"));
 			}
 		}
 	}

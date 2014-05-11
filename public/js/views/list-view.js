@@ -2,6 +2,13 @@ var app = app || {};
 
 app.ListView = Backbone.View.extend({
 	el: "#main-wrapper",
+
+	events: {
+		"click a.new-button": "showform",
+		"click a.hide-form": "hideform",
+		"click #main.hidden": "hideform"
+	},
+
 	render: function() {
 		var mine = new app.Guides();
 		mine.context = "mine";
@@ -37,5 +44,35 @@ app.ListView = Backbone.View.extend({
 				_render();
 			}
 		}});
+	},
+
+	showform: function(e) {
+		e.preventDefault();
+
+		$(".new-button").css({position: "absolute"});
+		$("#new-guide-form").css("position", "static");
+		$(".new-button").fadeOut(150);
+		$("#new-guide-form").css({display: "block", opacity: 0.3});
+		$("#new-guide-form").animate({opacity: 1.0}, function() {
+			$(this).css("overflow", "visible");
+		});
+		$("#main").addClass("hidden");
+		$("#main").animate({width: 530, opacity: 0.3});
+		$("#creation-wrapper").animate({width: 370});
+	},
+
+	hideform: function(e) {
+		// TODO: confirm close, if stuff has been entered into form
+		e.preventDefault();
+
+		$(".new-button").fadeIn(150);
+		$("#new-guide-form").css("overflow", "hidden");
+		$("#new-guide-form").animate({opacity: 0.3}, function() {
+			$(".new-button").css({position: "static"});
+			$(this).css({display: "none"});
+		});
+		$("#main").removeClass("hidden");
+		$("#main").animate({width: 770, opacity: 1.0});
+		$("#creation-wrapper").animate({width: 130});
 	}
 });

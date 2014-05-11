@@ -124,9 +124,11 @@ header a:hover {
 	/*background: green;*/
 }
 #main.hidden {
-	pointer-events: none;
 	border-color: #222;
 	box-shadow: inset -10px 1px 17px -10px rgba(0,0,0,0.7);
+}
+#main.hidden a {
+	pointer-events: none;
 }
 #creation-wrapper {
 	padding: 20px 20px 20px 0;
@@ -214,7 +216,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	margin-top: 2px;
 }
 
-.new-button {
+.new-button, .hide-form {
 	display: block;
 	text-align: center;
 	padding: 10px;
@@ -224,10 +226,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	border-radius: 10px;
 }
 
-.new-button:hover {
+.new-button:hover, .hide-form:hover {
 	border: 1px solid #555;
 	background: #555;
 	color: #fff;
+}
+
+a.hide-form {
+	margin-bottom: 20px;
+	color: rgb(230,0,0);
+	border-color: rgb(230,0,0);
+}
+
+.hide-form:hover {
+	background: rgb(230,0,0);
+	border-color: rgb(230,0,0);
 }
 
 #new-guide-form {

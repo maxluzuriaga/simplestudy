@@ -57,7 +57,7 @@ app.NewGuideView = Backbone.View.extend({
 			this.mainHeight = $("#main").height();
 			$(".body-wrapper").height($("#creation-wrapper").height() + 40)
 			$("#main").height($("#creation-wrapper").height())
-		};
+		}
 	},
 
 	hide: function(e) {
@@ -94,6 +94,12 @@ app.NewGuideView = Backbone.View.extend({
 
 			$(this.el).find("#sections-list").append(view.render(temp).el);
 
+			if ($("#main").height() < $("#creation-wrapper").height()) {
+				this.mainHeight = this.mainHeight ? Math.min(this.mainHeight, $("#main").height()) : $("#main").height();
+				$(".body-wrapper").height($("#creation-wrapper").height() + 40)
+				$("#main").height($("#creation-wrapper").height())
+			}
+
 			this.sectionFields.push(view);
 
 			this.sectionMoved();
@@ -104,7 +110,7 @@ app.NewGuideView = Backbone.View.extend({
 	sectionMoved: function() {
 		this.sectionFields.forEach(function(view) {
 			var index = $(view.el).index();
-			view.section.set('index', index);
-		});
-	}
-});
+				view.section.set('index', index);
+			});
+		}
+	});

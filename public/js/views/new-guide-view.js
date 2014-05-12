@@ -7,7 +7,7 @@ app.NewGuideView = Backbone.View.extend({
 	},
 
 	render: function(callback) {
-		app.getTemplate("guides/new", function(file) {
+		app.getTemplate("guides/edit", function(file) {
 			var template = _.template(file, { guide: this.guide });
 			$(this.el).html(template);
 

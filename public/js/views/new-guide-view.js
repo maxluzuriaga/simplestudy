@@ -4,10 +4,11 @@ app.NewGuideView = Backbone.View.extend({
 	events: {
 		"click a.new-button": "show",
 		"click a.hide-form": "hide",
+		"click #new-section": "addSection"
 	},
 
 	render: function(callback) {
-		this.guide.sections = new app.Sections([{name:"Some shit"}, {name:"Another one"}]);
+		this.guide.sections = new app.Sections([{}, {}]);
 
 		app.getTemplate("guides/edit", function(file) {
 			var template = _.template(file, { guide: this.guide });
@@ -26,7 +27,8 @@ app.NewGuideView = Backbone.View.extend({
 				}.bind(this));
 
 				callback(this);
-				$('.sortable').sortable();
+				this.sectionMoved();
+				$('.sortable').sortable().bind('sortupdate', this.sectionMoved.bind(this));
 			}.bind(this));
 		}.bind(this));
 	},
@@ -76,5 +78,33 @@ app.NewGuideView = Backbone.View.extend({
 			$(".body-wrapper").animate({height: this.mainHeight + 40});
 			$("#main").height(this.mainHeight);
 		}
+	},
+
+	addSection: function(e) {
+		e.preventDefault();
+
+		$('.sortable').sortable().unbind();
+		$('.sortable').sortable('destroy');
+
+		var section = new app.Section();
+
+		app.getTemplate("sections/edit", function(temp) {
+			var view = new app.SectionEditView();
+			view.section = section;
+
+			$(this.el).find("#sections-list").append(view.render(temp).el);
+
+			this.sectionFields.push(view);
+
+			this.sectionMoved();
+			$('.sortable').sortable().bind('sortupdate', this.sectionMoved.bind(this));
+		}.bind(this));
+	},
+
+	sectionMoved: function() {
+		this.sectionFields.forEach(function(view) {
+			var index = $(view.el).index();
+			view.section.set('index', index);
+		});
 	}
 });

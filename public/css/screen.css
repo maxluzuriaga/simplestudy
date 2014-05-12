@@ -72,31 +72,62 @@ header h1 {
 	font-weight: bold;
 }
 
-header p.username {
+header .user-control {
 	float: right;
+	font-size: 14px;
 }
 
-header h1 a {
+header .user-control .username {
+	padding: 16px 20px 19px 20px;
+}
+
+header .user-control ul {
+	visibility: hidden;
+	position: absolute;
+	top: 49px;
+	background: red;
+	margin-left: -1px;
+	list-style-type: none;
+	/*width: 100%;*/
+	background: #555;
+	color: #fff;
+	border: 1px solid #000;
+	box-shadow: 0 2px 2px rgba(0,0,0,0.15);
+}
+
+header .user-control ul li {
+	border-bottom: 1px solid #000;
+}
+
+header .user-control ul li a {
+	padding: 10px 20px;
+	/*width: 100%;*/
+	display: block;
+	height: 100%;
+}
+
+header .user-control ul li a:hover {
+	background: #000;
+}
+
+header .user-control ul li:last-child {
+	border: none;
+}
+
+header h1 > a {
 	padding: 15px 20px 15px 20px;
 	border-left: 1px solid rgba(0,0,0,0);
-	font-size: inherit;
 }
 
-header a {
+header h1 a, header .user-control {
 	display: block;
-	/*padding-top: 17px;*/
-	/*padding-bottom: 18px;*/
-	/*padding-left: 15px;*/
-	padding: 16px 20px 19px 20px;
-	font-size: 14px;
 	vertical-align: middle;
 	color: #555;
 	height: 100%;
 	border-right: 1px solid transparent;
 }
 
-header a:hover {
-	/*background: rgba(0,0,0,0.05);*/
+header h1 a:hover, header .user-control:hover {
 	background: #fff;
 	border-left: 1px solid;
 	border-right: 1px solid;
@@ -105,8 +136,6 @@ header a:hover {
 
 .body-wrapper {
 	width: 958px;
-	/*width: 100%;*/
-	/*padding: 20px;*/
 }
 
 #main-wrapper {

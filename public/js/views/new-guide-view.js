@@ -122,4 +122,5 @@ app.NewGuideView = Backbone.View.extend({
 		this.sectionFields.forEach(function(view) {
 			view.sectionMoved();
 		});
-	});
+	}
+});

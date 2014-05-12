@@ -66,6 +66,8 @@ function routes(app) {
     });
   });
 
+  apiRouter.get('/users/me', userOnly, users_controller.me);
+
   apiRouter.get('/guides/mine', userOnly, guides_controller.myGuides);
   apiRouter.get('/guides/shared', userOnly, guides_controller.sharedGuides);
   apiRouter.post('/guides', userOnly, guides_controller.create);

@@ -12,7 +12,15 @@ var Router = Backbone.Router.extend({
 	before: {
 		"*any": function(fragment, args, next) {
 			if ($.cookie('authorization_token') ||  fragment == "login") {
-				next();
+				if ($.cookie('authorization_token') && !app.currentUser) {
+					app.currentUser = new app.User();
+					app.currentUser.fetch({success: function() {
+						$("#user-name").html(app.currentUser.get('fullName'));
+						next();
+					}});
+				} else {
+					next();
+				}
 			} else {
 				app.router.navigate("login", { trigger: true });
 				return false;

@@ -31,10 +31,14 @@ function authorize(identifier, profile, done) {
 }
 
 function login(request, response) {
-  console.log(request.user);
   response.cookie('authorization_token', request.user.get('authorization_token', { maxAge: 900000, httpOnly: false }));
   response.redirect('/');
 }
 
+function me(request, response) {
+  response.json(200, request.user.omit(['authorization_token', 'identifier']));
+}
+
 exports.authorize = authorize;
 exports.login = login;
+exports.me = me;

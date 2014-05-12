@@ -12,6 +12,8 @@ app.NewGuideView = Backbone.View.extend({
 			$(this.el).html(template);
 
 			callback(this);
+
+			$('.sortable').sortable();
 		}.bind(this));
 	},
 

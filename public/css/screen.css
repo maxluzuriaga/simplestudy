@@ -246,7 +246,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 
 a.hide-form {
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 	color: rgb(230,0,0);
 	border-color: rgb(230,0,0);
 }
@@ -265,7 +265,6 @@ a.hide-form {
 
 #new-guide input[type=text], #new-guide input[type=email] {
 	border: 1px solid #777;
-	box-shadow: 0 1px 1px rgba(0,0,0,0.2);
 }
 
 input {
@@ -274,24 +273,43 @@ input {
 	border: 0;
 }
 
-p.input {
-	margin-bottom: 10px;
-}
-
 a.delete-section {
 	display: block;
-	width: 25px;
+	width: 20px;
 	text-align: center;
 	color: #fff;
 	font-weight: bold;
 	/*padding-top: 2px;*/
-	height: 25px;
-	margin-top: 15px;
+	height: 20px;
+	/*margin-top: 15px;*/
 	border-radius: 5px;
 	border: 1px solid rgba(200,0,0,1);
-	font-size: 22px;
+	font-size: 18px;
 	background: rgba(235,0,0,0.75);
 	float: right;
+}
+
+#sections-list {
+	list-style-type: none;
+	padding-top: 15px;
+}
+
+#sections-list li {
+	display: block;
+	margin-bottom: 10px;
+	background: #ddd;
+	padding: 5px;
+	border: 1px solid #777;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+	cursor: move;
+}
+
+#sections-list .sortable-placeholder {
+	background: red;
+	height: 61px;
+	box-shadow: none;
+	background: none;
+	border: 1px dashed #777;
 }
 
 p.input.name {
@@ -299,10 +317,14 @@ p.input.name {
 	border-bottom: 1px dashed #000;
 }
 
-p.input.section input {
+#sections-list li input {
 	font-size: 12px;
 	width: 85%;
 	padding: 2%;
+}
+
+#sections-list li input:last-child {
+	border-top: 0;
 }
 
 p.input.name input {
@@ -318,7 +340,7 @@ p.input.name input {
 	text-decoration: underline;
 	text-align: center;
 	display: block;
-	padding-right: 11%;
+	/*padding-right: 11%;*/
 }
 
 .paper, .body-wrapper {

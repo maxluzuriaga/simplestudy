@@ -20,6 +20,7 @@ app.NewGuideView = Backbone.View.extend({
 				this.guide.sections.forEach(function(section) {
 					var view = new app.SectionEditView();
 					view.section = section;
+					view.parentView = this;
 
 					$(this.el).find("#sections-list").append(view.render(temp).el);
 
@@ -87,10 +88,12 @@ app.NewGuideView = Backbone.View.extend({
 		$('.sortable').sortable('destroy');
 
 		var section = new app.Section();
+		this.guide.sections.push(section);
 
 		app.getTemplate("sections/edit", function(temp) {
 			var view = new app.SectionEditView();
 			view.section = section;
+			view.parentView = this;
 
 			$(this.el).find("#sections-list").append(view.render(temp).el);
 
@@ -107,10 +110,16 @@ app.NewGuideView = Backbone.View.extend({
 		}.bind(this));
 	},
 
+	removeSection: function(view) {
+		this.sectionFields = _.without(this.sectionFields, view);
+		this.guide.sections.remove(view.section);
+
+		view.close();
+		this.sectionMoved();
+	},
+
 	sectionMoved: function() {
 		this.sectionFields.forEach(function(view) {
-			var index = $(view.el).index();
-				view.section.set('index', index);
-			});
-		}
+			view.sectionMoved();
+		});
 	});

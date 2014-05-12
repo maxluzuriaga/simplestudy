@@ -1,8 +1,8 @@
 var app = app || {};
 
-app.Guide = Backbone.Model.extend({
-	urlRoot: '/guides',
-	
+app.Section = Backbone.Model.extend({
+	urlRoot: '/sections',
+
 	initialize: function() {
 		// console.log("New guide");
 	}

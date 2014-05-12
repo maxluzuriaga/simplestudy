@@ -7,14 +7,34 @@ app.NewGuideView = Backbone.View.extend({
 	},
 
 	render: function(callback) {
+		this.guide.sections = new app.Sections([{name:"Some shit"}, {name:"Another one"}]);
+
 		app.getTemplate("guides/edit", function(file) {
 			var template = _.template(file, { guide: this.guide });
 			$(this.el).html(template);
 
-			callback(this);
+			this.sectionFields = [];
 
-			$('.sortable').sortable();
+			app.getTemplate("sections/edit", function(temp) {
+				this.guide.sections.forEach(function(section) {
+					var view = new app.SectionEditView();
+					view.section = section;
+
+					$(this.el).find("#sections-list").append(view.render(temp).el);
+
+					this.sectionFields.push(view);
+				}.bind(this));
+
+				callback(this);
+				$('.sortable').sortable();
+			}.bind(this));
 		}.bind(this));
+	},
+
+	beforeClose: function() {
+		this.sectionFields.forEach(function(view) {
+			view.close();
+		});
 	},
 
 	show: function(e) {

@@ -3,7 +3,8 @@ var app = app || {};
 app.UserNavControl = Backbone.View.extend({
 	events: {
 		"mouseover": "showDropdown",
-		"mouseout": "hideDropdown"
+		"mouseout": "hideDropdown",
+		"click .logout": "logout"
 	},
 
 	render: function(callback) {
@@ -23,5 +24,13 @@ app.UserNavControl = Backbone.View.extend({
 
 	hideDropdown: function() {
 		$(this.el).find("ul").css("visibility", "hidden");
+	},
+
+	logout: function() {
+		app.currentUser = undefined;
+		$.removeCookie('authorization_token');
+
+		this.close();
+		app.router.navigate("", { trigger: true });
 	}
 });

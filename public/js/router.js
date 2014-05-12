@@ -13,11 +13,10 @@ var Router = Backbone.Router.extend({
 		"*any": function(fragment, args, next) {
 			if ($.cookie('authorization_token') ||  fragment == "login") {
 				if ($.cookie('authorization_token') && !app.currentUser) {
-					var user = new app.User();
-					user.fetch({success: function() {
-						// $("#user-name").html(app.currentUser.get('fullName'));
+					app.currentUser = new app.User();
+					app.currentUser.fetch({success: function() {
 						var userControl = new app.UserNavControl();
-						userControl.user = user;
+						userControl.user = app.currentUser;
 
 						userControl.render(function(v) {
 							$(".user-control").html(v.el);

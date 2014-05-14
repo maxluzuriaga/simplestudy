@@ -50,7 +50,7 @@ function _quicksort(array) {
   var greater = [];
 
   array.forEach(function(x) {
-    if (x.length <= pivot.length) {
+    if (x.email.length <= pivot.email.length) {
       less.push(x);
     } else {
       greater.push(x);
@@ -64,11 +64,7 @@ function find(request, response) {
   var query = request.params.query + '%';
 
   bookshelf.knex('users').where('email', 'LIKE', query).select('email').then(function(emails) {
-    var array = emails.map(function(e) {
-      return e['email'];
-    });
-    
-    response.json(200, _quicksort(array));
+    response.json(200, _quicksort(emails));
   });
 }
 

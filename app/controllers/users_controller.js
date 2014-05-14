@@ -1,5 +1,6 @@
 var crypto = require('crypto'),
-    User = require('../models/user');
+    User = require('../models/user'),
+    bookshelf = require('bookshelf').PG;
 
 function authorize(identifier, profile, done) {
   // create user if doesn't yet exist, then log them in and redirect to /
@@ -39,6 +40,39 @@ function me(request, response) {
   response.json(200, request.user.omit(['authorization_token', 'identifier']));
 }
 
+function _quicksort(array) {
+  if (array.length <= 1) {
+    return array;
+  }
+
+  var pivot = array.splice(Math.floor(array.length/2), 1)[0];
+  var less = [];
+  var greater = [];
+
+  array.forEach(function(x) {
+    if (x.length <= pivot.length) {
+      less.push(x);
+    } else {
+      greater.push(x);
+    }
+  });
+
+  return _quicksort(less).concat([pivot]).concat(_quicksort(greater));
+}
+
+function find(request, response) {
+  var query = request.params.query + '%';
+
+  bookshelf.knex('users').where('email', 'LIKE', query).select('email').then(function(emails) {
+    var array = emails.map(function(e) {
+      return e['email'];
+    });
+    
+    response.json(200, _quicksort(array));
+  });
+}
+
 exports.authorize = authorize;
 exports.login = login;
 exports.me = me;
+exports.find = find;

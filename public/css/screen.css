@@ -323,7 +323,7 @@ a.delete-section {
 	padding-top: 15px;
 }
 
-#sections-list li {
+#sections-list > li {
 	display: block;
 	margin-bottom: 10px;
 	background: #ddd;
@@ -352,8 +352,17 @@ p.input.name {
 	padding: 2%;
 }
 
-#sections-list li input:last-child {
+#sections-list li input.section-email {
 	border-top: 0;
+}
+
+#sections-list .email-list {
+	list-style-type: none;
+	position: absolute;
+	background: #fff;
+	width: 315px;
+	padding: 7px;
+	border: 1px solid #000;
 }
 
 p.input.name input {

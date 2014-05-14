@@ -28,6 +28,22 @@ app.getTemplate = function(file, handler) {
 	}
 }
 
+app.asyncForEach = function(array, each, callback) {
+	var index = 0;
+
+	var next = function() {
+		index++;
+
+		if (index < array.length) {
+			each(array[index], next);
+		} else {
+			callback();
+		}
+	};
+
+	each(array[0], next);
+}
+
 Backbone.View.prototype.close = function() {
 	if (this.beforeClose) {
 		this.beforeClose();

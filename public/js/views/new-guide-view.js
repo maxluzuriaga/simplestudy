@@ -16,21 +16,36 @@ app.NewGuideView = Backbone.View.extend({
 
 			this.sectionFields = [];
 
-			app.getTemplate("sections/edit", function(temp) {
-				this.guide.sections.forEach(function(section) {
-					var view = new app.SectionEditView();
-					view.section = section;
-					view.parentView = this;
+			app.asyncForEach(this.guide.sections.models, function(section, next) {
+				var view = new app.SectionEditView();
+				view.section = section;
+				view.parentView = this;
 
-					$(this.el).find("#sections-list").append(view.render(temp).el);
-
-					this.sectionFields.push(view);
+				view.render(function(v) {
+					$(this.el).find("#sections-list").append(v.el);
+					next();
 				}.bind(this));
 
+				this.sectionFields.push(view);
+			}.bind(this), function() {
 				callback(this);
+
 				this.sectionMoved();
 				$('.sortable').sortable().bind('sortupdate', this.sectionMoved.bind(this));
 			}.bind(this));
+
+			// this.guide.sections.forEach(function(section) {
+			// 	var view = new app.SectionEditView();
+			// 	view.section = section;
+			// 	view.parentView = this;
+
+			// 	view.render(function(v) {
+			// 		$(this.el).find("#sections-list").append(v.el);
+			// 	});
+
+			// 	this.sectionFields.push(view);
+			// }.bind(this));
+			
 		}.bind(this));
 	},
 

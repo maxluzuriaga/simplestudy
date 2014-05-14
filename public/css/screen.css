@@ -357,12 +357,33 @@ p.input.name {
 }
 
 #sections-list .email-list {
+	display: none;
 	list-style-type: none;
 	position: absolute;
-	background: #fff;
-	width: 315px;
-	padding: 7px;
-	border: 1px solid #000;
+	background: #f5f5f5;
+	width: 329px;
+	font-size: 12px;
+	border: 1px solid #777;
+	border-top: 0;
+	box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+}
+
+#sections-list .email-list li {
+	border-bottom: 1px solid #777;
+}
+
+#sections-list .email-list li.selected {
+	background: #428bca;
+	color: #fff;
+}
+
+#sections-list .email-list li a {
+	display: block;
+	padding: 8px 7px;
+}
+
+#sections-list .email-list li:last-child {
+	border-bottom: 0;
 }
 
 p.input.name input {

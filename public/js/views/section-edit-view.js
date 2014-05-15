@@ -108,6 +108,20 @@ app.SectionEditView = Backbone.View.extend({
 		$(this.el).next().find("input.section-name").focus();
 	},
 
+	validateEmail: function() {
+		if (this.section.get('email') == "") {
+			this.section.emailValid = false;
+			return;
+		}
+
+		var user = new app.User({email: this.section.get('email')});
+
+		user.fetch({success: function() {
+			this.section.emailValid = user.get('exists');
+			console.log(this.section.emailValid);
+		}.bind(this)});
+	},
+
 	setLoading: function(loading) {
 		if (this.loading != loading) {
 			this.loading = loading;

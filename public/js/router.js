@@ -14,6 +14,7 @@ var Router = Backbone.Router.extend({
 			if ($.cookie('authorization_token') || fragment == "login") {
 				if ($.cookie('authorization_token') && !app.currentUser) {
 					app.currentUser = new app.User();
+					app.currentUser.context = 'me';
 					app.currentUser.fetch({success: function() {
 						var userControl = new app.UserNavControl();
 						userControl.user = app.currentUser;

@@ -50,12 +50,8 @@ app.EmailSuggestionList = Backbone.View.extend({
 		this.updateSelected();
 	},
 
-	somefunc: function() {
-		alert("dawg");
-	},
-
 	updateSelected: function() {
-		$(this.el).find("li").removeClass("selected");
+		$(this.el).find("li.selected").removeClass("selected");
 		$(this.el).find("li").eq(this.selected).addClass("selected");
 	},
 
@@ -85,7 +81,7 @@ app.EmailSuggestionList = Backbone.View.extend({
 			this.selected = null;
 			$(this.el).parent().css("display", "none");
 
-			
+			this.parent.validateEmail();
 		}.bind(this), 95);
 	}
 });

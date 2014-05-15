@@ -154,14 +154,13 @@ app.NewGuideView = Backbone.View.extend({
 	validationFailed: function(guide, errors) {
 		errors.forEach(function(error) {
 			if (error.index != undefined) {
-				var section = $(this.el).find("#sections-list li:eq(" + error.index + ")");
+				var section = $(this.el).find("#sections-list > li").eq(error.index);
 
 				error.errors.forEach(function(err) {
 					section.find(err.selector)[0].setAttribute('original-title', err.msg);
 					section.find(err.selector).tipsy("show");
 				});
 			} else {
-				console.log($(this.el).find(error.selector));
 				$(this.el).find(error.selector)[0].setAttribute('original-title', error.msg);
 				$(this.el).find(error.selector).tipsy("show");
 			}

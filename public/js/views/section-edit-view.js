@@ -54,7 +54,6 @@ app.SectionEditView = Backbone.View.extend({
 		}
 
 		this.emailLastChanged = new Date();
-		this.suggestionList.hide();
 
 		var email = $(this.el).find("input.section-email").val();
 		this.section.set('email', email);

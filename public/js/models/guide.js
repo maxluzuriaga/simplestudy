@@ -19,7 +19,7 @@ app.Guide = Backbone.Model.extend({
 		var err = [];
 
 		if (!attrs.name || attrs.name.length == 0) {
-			err.push({ selector: "input.guide-name", msg: "No name entered." });
+			err.push({ selector: "input.guide-name", msg: "Enter a name for your study guide." });
 		}
 
 		this.sections.forEach(function(section) {

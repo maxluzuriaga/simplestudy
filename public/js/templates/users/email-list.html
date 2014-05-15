@@ -1,5 +1,5 @@
 {{ users.forEach(function(user) { }}
 	<li>
-		<a href="#" class="no-click email-link">{{= user.get('email') }}</a>
+		<a href="#" class="no-click"><strong>{{= query }}</strong>{{= user.get('email').split(query)[1] }}</a>
 	</li>
 {{ }) }}

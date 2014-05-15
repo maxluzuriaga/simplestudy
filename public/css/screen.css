@@ -386,6 +386,10 @@ p.input.name {
 	padding: 8px 7px;
 }
 
+#sections-list .email-list li a strong {
+	font-weight: bold;
+}
+
 #sections-list .email-list li:last-child {
 	border-bottom: 0;
 }

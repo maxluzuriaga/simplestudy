@@ -13,7 +13,7 @@ app.EmailSuggestionList = Backbone.View.extend({
 
 	render: function(callback) {
 		app.getTemplate("users/email-list", function(file) {
-			var template = _.template(file, { users: this.users.models });
+			var template = _.template(file, { users: this.users.models, query: this.users.query });
 			$(this.el).html(template);
 
 			callback(this);

@@ -356,6 +356,10 @@ p.input.name {
 	border-top: 0;
 }
 
+#sections-list li input.section-email.loading {
+	background: #fff url(../img/ajax-loader.gif) no-repeat center right 6px;
+}
+
 #sections-list .email-list {
 	display: none;
 	list-style-type: none;

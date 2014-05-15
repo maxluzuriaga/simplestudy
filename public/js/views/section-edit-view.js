@@ -110,16 +110,28 @@ app.SectionEditView = Backbone.View.extend({
 
 	validateEmail: function() {
 		if (this.section.get('email') == "") {
-			this.section.emailValid = false;
+			// this.section.emailValid = false;
+			this.setEmailValid(false);
 			return;
 		}
 
 		var user = new app.User({email: this.section.get('email')});
 
 		user.fetch({success: function() {
-			this.section.emailValid = user.get('exists');
+			// this.section.emailValid = user.get('exists');
+			this.setEmailValid(user.get('exists'));
 			console.log(this.section.emailValid);
 		}.bind(this)});
+	},
+
+	setEmailValid: function(valid) {
+		this.section.emailValid = valid;
+
+		if (valid) {
+			$(this.el).find("input.section-email").addClass("confirmed");
+		} else {
+			$(this.el).find("input.section-email").removeClass("confirmed");
+		}
 	},
 
 	setLoading: function(loading) {

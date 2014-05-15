@@ -360,6 +360,10 @@ p.input.name {
 	background: #fff url(../img/ajax-loader.gif) no-repeat center right 6px;
 }
 
+#sections-list li input.section-email.confirmed {
+	background: #fff url(../img/checkmark.png) no-repeat center right 6px;
+}
+
 #sections-list .email-list {
 	display: none;
 	list-style-type: none;

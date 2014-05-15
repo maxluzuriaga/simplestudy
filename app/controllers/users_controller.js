@@ -32,6 +32,7 @@ function authorize(identifier, profile, done) {
 }
 
 function login(request, response) {
+  console.log(request.user.get('authorization_token'));
   response.cookie('authorization_token', request.user.get('authorization_token', { maxAge: 900000, httpOnly: false }));
   response.redirect('/');
 }
@@ -61,7 +62,7 @@ function _quicksort(array) {
 }
 
 function find(request, response) {
-  var query = request.params.query + '%';
+  var query = request.params.query.replace("_", "\\_") + '%';
 
   bookshelf.knex('users').where('email', 'LIKE', query).select('email').then(function(emails) {
     response.json(200, _quicksort(emails));

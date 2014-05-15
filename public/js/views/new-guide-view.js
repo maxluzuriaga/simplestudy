@@ -99,12 +99,12 @@ app.NewGuideView = Backbone.View.extend({
 		var section = new app.Section();
 		this.guide.sections.push(section);
 
-		app.getTemplate("sections/edit", function(temp) {
-			var view = new app.SectionEditView();
-			view.section = section;
-			view.parentView = this;
+		var view = new app.SectionEditView();
+		view.section = section;
+		view.parentView = this;
 
-			$(this.el).find("#sections-list").append(view.render(temp).el);
+		view.render(function(v) {
+			$(this.el).find("#sections-list").append(v.el);
 
 			if ($("#main").height() < $("#creation-wrapper").height()) {
 				this.mainHeight = this.mainHeight ? Math.min(this.mainHeight, $("#main").height()) : $("#main").height();
@@ -112,7 +112,7 @@ app.NewGuideView = Backbone.View.extend({
 				$("#main").height($("#creation-wrapper").height())
 			}
 
-			this.sectionFields.push(view);
+			this.sectionFields.push(v);
 
 			this.sectionMoved();
 			$('.sortable').sortable().bind('sortupdate', this.sectionMoved.bind(this));

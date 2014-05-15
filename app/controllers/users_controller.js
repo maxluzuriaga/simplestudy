@@ -68,7 +68,20 @@ function find(request, response) {
   });
 }
 
+function exists(request, response) {
+  var email = request.params.email;
+
+  new User({email: email}).fetch().then(function(user) {
+    if (user) {
+      response.json(200, {exists: true});
+    } else {
+      response.json(200, {exists: false});
+    }
+  });
+}
+
 exports.authorize = authorize;
 exports.login = login;
 exports.me = me;
 exports.find = find;
+exports.exists = exists;

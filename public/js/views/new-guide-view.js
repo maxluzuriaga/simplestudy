@@ -9,9 +9,13 @@ app.NewGuideView = Backbone.View.extend({
 		"submit form": "submit"
 	},
 
-	render: function(callback) {
+	initialize: function() {
+		this.guide = new app.Guide();
 		this.guide.sections = new app.Sections([{}, {}]);
+		this.listenTo(this.guide, "invalid", this.validationFailed.bind(this));
+	},
 
+	render: function(callback) {
 		app.getTemplate("guides/edit", function(file) {
 			var template = _.template(file, { guide: this.guide });
 			$(this.el).html(template);
@@ -139,5 +143,9 @@ app.NewGuideView = Backbone.View.extend({
 		this.guide.create(function(id) {
 			app.router.navigate('guides/' + id, {trigger: true});
 		});
+	},
+
+	validationFailed: function(guide, error) {
+		console.log(error);
 	}
 });

@@ -32,7 +32,6 @@ function authorize(identifier, profile, done) {
 }
 
 function login(request, response) {
-  console.log(request.user.get('authorization_token'));
   response.cookie('authorization_token', request.user.get('authorization_token', { maxAge: 900000, httpOnly: false }));
   response.redirect('/');
 }

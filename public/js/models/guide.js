@@ -10,8 +10,26 @@ app.Guide = Backbone.Model.extend({
 	create: function(callback) {
 		this.set('sections', JSON.stringify(this.sections.toJSON()));
 
-		this.save(null,{success:function(guide, response) {
+		this.save(null, {success:function(guide, response) {
 			callback(response.id);
 		}});
+	},
+
+	validate: function(attrs, options) {
+		var err = [];
+
+		if (!attrs.name || attrs.name.length == 0) {
+			err.push({ selector: "input.name", msg: "No name entered" });
+		}
+
+		this.sections.forEach(function(section) {
+			if (!section.isValid()) {
+				err.push({ index: section.get('index'), error: section.validationError });
+			}
+		});
+
+		if (err.length > 0) {
+			return err;
+		}
 	}
 });

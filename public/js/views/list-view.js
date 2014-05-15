@@ -25,7 +25,6 @@ app.ListView = Backbone.View.extend({
 				$(this.el).html(template);
 
 				this.newGuide = new app.NewGuideView();
-				this.newGuide.guide = new app.Guide();
 
 				this.newGuide.render(function(v) {
 					$(this.el).find("#creation-wrapper").html(v.el);

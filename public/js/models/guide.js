@@ -19,12 +19,12 @@ app.Guide = Backbone.Model.extend({
 		var err = [];
 
 		if (!attrs.name || attrs.name.length == 0) {
-			err.push({ selector: "input.name", msg: "No name entered" });
+			err.push({ selector: "input.guide-name", msg: "No name entered." });
 		}
 
 		this.sections.forEach(function(section) {
 			if (!section.isValid()) {
-				err.push({ index: section.get('index'), error: section.validationError });
+				err.push({ index: section.get('index'), errors: section.validationError });
 			}
 		});
 

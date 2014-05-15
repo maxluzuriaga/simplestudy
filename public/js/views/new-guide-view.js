@@ -5,13 +5,14 @@ app.NewGuideView = Backbone.View.extend({
 		"click a.new-button": "show",
 		"click a.hide-form": "hide",
 		"change input.guide-name": "nameChange",
+		"keyup input.guide-name": "nameTyped",
 		"click #new-section": "addSection",
 		"submit form": "submit"
 	},
 
 	initialize: function() {
 		this.guide = new app.Guide();
-		this.guide.sections = new app.Sections([{}, {}]);
+		this.guide.sections = new app.Sections([{index: 0}, {index: 1}]);
 		this.listenTo(this.guide, "invalid", this.validationFailed.bind(this));
 	},
 
@@ -38,6 +39,7 @@ app.NewGuideView = Backbone.View.extend({
 
 				this.sectionMoved();
 				$('.sortable').sortable().bind('sortupdate', this.sectionMoved.bind(this));
+				$('input.guide-name').tipsy({trigger: 'manual', gravity: 'e'});
 			}.bind(this));
 		}.bind(this));
 	},
@@ -51,6 +53,10 @@ app.NewGuideView = Backbone.View.extend({
 	nameChange: function(e) {
 		var name = $(this.el).find("input.guide-name").val();
 		this.guide.set('name', name);
+	},
+
+	nameTyped: function(e) {
+		$('input.guide-name').tipsy("hide");
 	},
 
 	show: function(e) {
@@ -145,7 +151,20 @@ app.NewGuideView = Backbone.View.extend({
 		});
 	},
 
-	validationFailed: function(guide, error) {
-		console.log(error);
+	validationFailed: function(guide, errors) {
+		errors.forEach(function(error) {
+			if (error.index != undefined) {
+				var section = $(this.el).find("#sections-list li:eq(" + error.index + ")");
+
+				error.errors.forEach(function(err) {
+					section.find(err.selector)[0].setAttribute('original-title', err.msg);
+					section.find(err.selector).tipsy("show");
+				});
+			} else {
+				console.log($(this.el).find(error.selector));
+				$(this.el).find(error.selector)[0].setAttribute('original-title', error.msg);
+				$(this.el).find(error.selector).tipsy("show");
+			}
+		}.bind(this));
 	}
 });

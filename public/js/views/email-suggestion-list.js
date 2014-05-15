@@ -84,6 +84,8 @@ app.EmailSuggestionList = Backbone.View.extend({
 		window.setTimeout(function() {
 			this.selected = null;
 			$(this.el).parent().css("display", "none");
+
+			
 		}.bind(this), 95);
 	}
 });

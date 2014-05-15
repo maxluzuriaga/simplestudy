@@ -6,6 +6,7 @@ app.SectionEditView = Backbone.View.extend({
 	events: {
 		"click a.delete-section": "removeSection",
 		"change input.section-name": "nameChange",
+		"keyup input.section-name": "nameTyped",
 		"keydown input.section-email": "keypress",
 		"keyup input.section-email": "emailChange",
 		"blur input.section-email": "hideSuggestions"
@@ -23,6 +24,7 @@ app.SectionEditView = Backbone.View.extend({
 				$(this.el).find(".email-list").html(v.el);
 
 				callback(this);
+				$('input.section-name, input.section-email').tipsy({trigger: 'manual', gravity: 'e'});
 			}.bind(this));
 		}.bind(this));
 	},
@@ -47,12 +49,17 @@ app.SectionEditView = Backbone.View.extend({
 		this.section.set('name', name);
 	},
 
+	nameTyped: function() {
+		$(this.el).find("input.section-name").tipsy("hide");
+	},
+
 	emailChange: function(e) {
 		var code = e.keyCode;
 		if (code == 38 || code == 40 || code == 13) {
 			return;
 		}
 
+		$(this.el).find("input.section-email").tipsy("hide");
 		this.emailLastChanged = new Date();
 
 		var email = $(this.el).find("input.section-email").val();

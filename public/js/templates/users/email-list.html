@@ -1,5 +1,6 @@
 {{ users.forEach(function(user) { }}
+	{{ var email = user.get('email') }}
 	<li>
-		<a href="#" class="no-click"><strong>{{= query }}</strong>{{= user.get('email').split(query)[1] }}</a>
+		<a href="#" class="no-click"><strong>{{= query }}</strong>{{= email.substring(query.length, email.length) }}</a>
 	</li>
 {{ }) }}

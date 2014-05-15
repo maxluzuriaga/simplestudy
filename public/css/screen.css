@@ -369,7 +369,7 @@ p.input.name {
 	font-size: 12px;
 	border: 1px solid #777;
 	border-top: 0;
-	box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+	box-shadow: 0 1px 1px rgba(0,0,0,0.2);
 }
 
 #sections-list .email-list li {
@@ -400,6 +400,7 @@ p.input.name input {
 	width: 94%;
 	padding: 3%;
 	border: 1px solid #ddd;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.2);
 }
 
 #new-section {

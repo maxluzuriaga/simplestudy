@@ -4,7 +4,9 @@ app.NewGuideView = Backbone.View.extend({
 	events: {
 		"click a.new-button": "show",
 		"click a.hide-form": "hide",
-		"click #new-section": "addSection"
+		"change input.guide-name": "nameChange",
+		"click #new-section": "addSection",
+		"submit form": "submit"
 	},
 
 	render: function(callback) {
@@ -33,19 +35,6 @@ app.NewGuideView = Backbone.View.extend({
 				this.sectionMoved();
 				$('.sortable').sortable().bind('sortupdate', this.sectionMoved.bind(this));
 			}.bind(this));
-
-			// this.guide.sections.forEach(function(section) {
-			// 	var view = new app.SectionEditView();
-			// 	view.section = section;
-			// 	view.parentView = this;
-
-			// 	view.render(function(v) {
-			// 		$(this.el).find("#sections-list").append(v.el);
-			// 	});
-
-			// 	this.sectionFields.push(view);
-			// }.bind(this));
-			
 		}.bind(this));
 	},
 
@@ -53,6 +42,11 @@ app.NewGuideView = Backbone.View.extend({
 		this.sectionFields.forEach(function(view) {
 			view.close();
 		});
+	},
+
+	nameChange: function(e) {
+		var name = $(this.el).find("input.guide-name").val();
+		this.guide.set('name', name);
 	},
 
 	show: function(e) {
@@ -136,6 +130,14 @@ app.NewGuideView = Backbone.View.extend({
 	sectionMoved: function() {
 		this.sectionFields.forEach(function(view) {
 			view.sectionMoved();
+		});
+	},
+
+	submit: function(e) {
+		e.preventDefault();
+		
+		this.guide.create(function(id) {
+			app.router.navigate('guides/' + id, {trigger: true});
 		});
 	}
 });

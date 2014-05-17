@@ -1,5 +1,23 @@
-<div class="body-wrapper group">
-	<div id="main">
-		{{= guide.get('name') }}
+<div class="guide-wrapper">
+	<h2 class="guide-name">{{= guide.get('name') }}</h2>
+
+	<div class="body-wrapper group">
+		<div id="guide">
+			{{ guide.get('sections').forEach(function(section) { }}
+				<article class="section mine">
+					<div class="group">
+						<h3>{{= section.name }}</h3>
+						<p class="user-name"><i class="fa fa-user"></i> {{= section.user.fullName }}</p>
+					</div>
+
+					<div class="section-text">
+						{{- section.text }}
+					</div>
+				</article>
+			{{ }) }}
+		</div>
 	</div>
+</div>
+<div class="chat-wrapper">
+	This is where the chat will go
 </div>

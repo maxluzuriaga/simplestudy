@@ -81,6 +81,10 @@ header .user-control .username {
 	padding: 16px 20px 19px 20px;
 }
 
+header .user-control .username i {
+	margin-right: 3px;
+}
+
 header .user-control ul {
 	visibility: hidden;
 	position: absolute;
@@ -302,19 +306,15 @@ input {
 	border: 0;
 }
 
-a.delete-section {
+a.delete-section i {
 	display: block;
-	width: 20px;
+	/*width: 20px;*/
 	text-align: center;
-	color: #fff;
-	font-weight: bold;
-	/*padding-top: 2px;*/
-	height: 20px;
-	/*margin-top: 15px;*/
-	border-radius: 5px;
-	border: 1px solid rgba(200,0,0,1);
-	font-size: 18px;
-	background: rgba(235,0,0,0.75);
+	color: rgb(185,0,0);
+	font-size: 21px;
+	/*text-shadow: 0 0 1px rgba(0,0,0,0.1);*/
+	/*border-radius: 5px;*/
+	/*font-size: 18px;*/
 	float: right;
 }
 
@@ -348,7 +348,7 @@ p.input.name {
 
 #sections-list li input {
 	font-size: 12px;
-	width: 88%;
+	width: 89%;
 	padding: 2%;
 }
 
@@ -369,7 +369,7 @@ p.input.name {
 	list-style-type: none;
 	position: absolute;
 	background: #f5f5f5;
-	width: 329px;
+	width: 332px;
 	font-size: 12px;
 	border: 1px solid #777;
 	border-top: 0;
@@ -392,6 +392,7 @@ p.input.name {
 
 #sections-list .email-list li a strong {
 	font-weight: bold;
+	margin-left: 2px;
 }
 
 #sections-list .email-list li:last-child {

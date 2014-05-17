@@ -36,7 +36,7 @@ function show(request, response) {
   // don't include section texts unless user is owner or has approved section in guide
   request.guide.load(['owner', 'sections', 'sections.user']).then(function(guide) {
     if (guide.related('owner').id == request.user.id) {
-      response.json(200, request.guide.renderJSON({includeSectionText: true}));
+      response.json(200, request.guide.renderJSON({includeSectionText: true, isOwner: true}));
     } else {
       var allowedToView = false;
       var includeText = false;
@@ -52,7 +52,7 @@ function show(request, response) {
       });
 
       if (allowedToView) {
-        response.json(200, request.guide.renderJSON({includeSectionText: includeText, userID: request.user.id}));
+        response.json(200, request.guide.renderJSON({includeSectionText: includeText, userID: request.user.id, isOwner: false}));
       }
     }
   });

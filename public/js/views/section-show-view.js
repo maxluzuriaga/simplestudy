@@ -2,6 +2,7 @@ var app = app || {};
 
 app.SectionShowView = Backbone.View.extend({
 	events: {
+		"click a.approve": "approveSection"
 	},
 
 	render: function(callback) {
@@ -10,6 +11,14 @@ app.SectionShowView = Backbone.View.extend({
 			$(this.el).html(template);
 
 			callback(this);
+		}.bind(this));
+	},
+
+	approveSection: function(e) {
+		e.preventDefault();
+
+		this.section.setApproved(true, function() {
+			console.log(this.section);
 		}.bind(this));
 	}
 });

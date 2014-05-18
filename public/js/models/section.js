@@ -21,5 +21,21 @@ app.Section = Backbone.Model.extend({
 		if (err.length > 0) {
 			return err;
 		}
+	},
+
+	setApproved: function(approved, callback) {
+		var path;
+
+		if (approved) {
+			path = "/approve";
+		} else {
+			path = "/disapprove";
+		}
+
+		$.post(this.url() + path, function() {
+			this.set('approved', approved);
+
+			callback();
+		}.bind(this));
 	}
 });

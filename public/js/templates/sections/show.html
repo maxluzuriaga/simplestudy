@@ -11,6 +11,22 @@
 	</div>
 
 	<div class="section-text">
-		{{- section.get('text') }}
+		{{ if (guideMine || !hideText || section.get('mine')) { }}
+			{{ if (section.get('mine')) { }}
+				(mine)
+				{{- section.get('text') }}
+			{{ } else { }}
+				(not mine)
+				{{- section.get('text') }}
+			{{ } }}
+		{{ } else { }}
+			<div class="hidden-section-message">
+				<p>You'll gain access to the rest of the study guide once the owner approves your section.<p>
+			</div>
+			<div class="blurred-text">
+				<p>If you're looking at this in the console, good idea! But you'll have to do better than that. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse! Lorem ipsum dolor sit amet.</p>
+				<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Duis aute irure dolor in reprehenderit in voluptate velit esse. Exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse!</p>
+			</div>
+		{{ } }}
 	</div>
 </article>

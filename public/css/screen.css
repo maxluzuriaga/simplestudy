@@ -538,6 +538,47 @@ article.section div.group > p.user-name {
 	font-size: 14px;
 }
 
+article.section .hidden-section-message {
+	font-weight: bold;
+	background: #fff;
+	box-shadow: 0 0 20px 15px white;
+	border-radius: 2px;
+	position: absolute;
+	z-index: 50;
+	width: 350px;
+	height: 38px;
+	padding: 10px;
+	margin-top: 55px;
+	margin-left: 148px;
+}
+
+article.section .hidden-section-message p {
+	margin-bottom: 0;
+}
+
+article.section .blurred-text {
+	padding: 3px;
+	overflow: visible;
+	color: transparent;
+	text-shadow: 0 0 8px rgba(0,0,0,1);
+
+	-webkit-mask-image: -webkit-gradient(linear, left 00%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0.2)));
+}
+
+article.section .blurred-text p:last-child {
+	margin-bottom: 0;
+}
+
+.blurred-text p {
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor: default;
+	overflow: visible;
+}
+
 article.section div.section-text {
 	font-size: 14px;
 	margin-top: 15px;

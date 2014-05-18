@@ -28,11 +28,9 @@ app.NewGuideView = Backbone.View.extend({
 				view.section = section;
 				view.parentView = this;
 
-				view.render(function(v) {
-					this.sectionFields.push(view);
+				this.sectionFields.push(view);
 
-					done();
-				}.bind(this));
+				view.render(done);
 			}.bind(this), function() {
 				this.sectionFields.forEach(function(view) {
 					$(this.el).find("#sections-list").append(view.el);

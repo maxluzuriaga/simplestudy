@@ -14,12 +14,9 @@ app.GuideView = Backbone.View.extend({
 				view.guideMine = this.guide.get('mine');
 				view.hideText = this.guide.get('hideText');
 
-				view.render(function(v) {
-					// $(this.el).find("#guide").append(v.el);
-					this.sectionViews.push(v);
+				this.sectionViews.push(view);
 
-					done();
-				}.bind(this));
+				view.render(done);
 			}.bind(this), function() {
 				this.sectionViews.forEach(function(view) {
 					$(this.el).find("#guide").append(view.el);
@@ -28,5 +25,11 @@ app.GuideView = Backbone.View.extend({
 				callback(this);
 			}.bind(this));
 		}.bind(this));
+	},
+
+	beforeClose: function() {
+		this.sectionViews.forEach(function(view) {
+			view.close();
+		});
 	}
 });

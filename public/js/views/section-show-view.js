@@ -7,7 +7,7 @@ app.SectionShowView = Backbone.View.extend({
 
 	render: function(callback) {
 		app.getTemplate("sections/show", function(file) {
-			var template = _.template(file, { section: this.section, guideMine: this.guideMine });
+			var template = _.template(file, { section: this.section, guideMine: this.guideMine, hideText: this.hideText });
 			$(this.el).html(template);
 
 			callback(this);

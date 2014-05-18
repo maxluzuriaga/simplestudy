@@ -12,6 +12,7 @@ app.GuideView = Backbone.View.extend({
 				var view = new app.SectionShowView();
 				view.section = section;
 				view.guideMine = this.guide.get('mine');
+				view.hideText = this.guide.get('hideText');
 
 				view.render(function(v) {
 					// $(this.el).find("#guide").append(v.el);

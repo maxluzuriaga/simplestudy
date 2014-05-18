@@ -63,6 +63,7 @@ app.router.on('route:show-guide', function(id) {
 	guideview.guide = new app.Guide({id: id});
 
 	guideview.guide.fetch({success: function() {
+		guideview.guide.sections = new app.Sections(guideview.guide.get('sections'));
 		app.router.showView("#main-wrapper", guideview);
 	}});
 });

@@ -3,15 +3,21 @@
 
 	<div class="body-wrapper group">
 		<div id="guide">
-			{{ guide.get('sections').forEach(function(section) { }}
+			{{ guide.sections.forEach(function(section) { }}
 				<article class="section mine">
 					<div class="group">
-						<h3>{{= section.name }}</h3>
-						<p class="user-name"><i class="fa fa-user"></i> {{= section.user.fullName }}</p>
+						{{ if (guide.get('mine')) { }}
+							<div class="approve-box group">
+								<a href="#" class="no-click approve {{= section.get('approved') ? 'selected' : '' }}"><i class="fa fa-thumbs-up"></i></a>
+								<a href="#" class="no-click disapprove {{= !section.get('approved') ? 'selected' : '' }}"><i class="fa fa-thumbs-down"></i></a>
+							</div>
+						{{ } }}
+						<h3>{{= section.get('name') }}</h3>
+						<p class="user-name"><i class="fa fa-user"></i> {{= section.get('user').fullName }}</p>
 					</div>
 
 					<div class="section-text">
-						{{- section.text }}
+						{{- section.get('text') }}
 					</div>
 				</article>
 			{{ }) }}

@@ -487,6 +487,45 @@ article.section:last-child {
 	border: 0;
 }
 
+article.section .approve-box {
+	float: left;
+	/*width: 50px;*/
+	/*background: gray;*/
+	border-radius: 5px;
+	/*padding: 5px;*/
+	border: 1px solid #888;
+	margin-right: 5px;
+	overflow: hidden;
+	font-size: 14px;
+}
+
+article.section .approve-box a {
+	display: block;
+	float: left;
+	padding: 5px;
+}
+
+article.section .approve-box a.selected {
+	color: #fff;
+}
+
+.approve-box a.approve {
+	color: rgb(0,140,0);
+	border-right: 1px solid #888;
+}
+
+.approve-box a.approve.selected {
+	background: rgb(0,140,0);
+}
+
+.approve-box a.disapprove {
+	color: rgb(230,0,0);
+}
+
+.approve-box a.disapprove.selected {
+	background: rgb(230,0,0);
+}
+
 article.section div.group > h3 {
 	font-weight: bold;
 	font-size: 24px;

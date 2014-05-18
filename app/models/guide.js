@@ -16,6 +16,7 @@ var Guide = bookshelf.Model.extend({
 
     obj.mine = options.isOwner;
     obj.owner = this.related('owner').omit(['id', 'authorization_token', 'identifier']);
+    obj.hideText = !options.includeSectionText;
 
     var omitIncludeText = ['guide_id', 'user_id'];
     var omitNoText = ['guide_id', 'user_id', 'text'];
@@ -40,13 +41,13 @@ var Guide = bookshelf.Model.extend({
       var obj = section.omit(omit);
       obj.user = section.related('user').renderJSON();
 
-      if (options.userID == section.get('user_id')) {
-        obj.mine = true;
-      } else {
-        obj.mine = false;
-      }
+      // if (options.userID == section.get('user_id')) {
+        obj.mine = (options.userID == section.get('user_id'));
+      // } else {
+      //   obj.mine = false;
+      // }
 
-      return obj
+      return obj;
     });
 
     return obj;

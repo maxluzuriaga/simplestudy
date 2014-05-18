@@ -29,19 +29,22 @@ app.getTemplate = function(file, handler) {
 }
 
 app.asyncForEach = function(array, each, callback) {
-	var index = 0;
+	var completed = 0;
 
-	var next = function() {
-		index++;
+	var done = function() {
+		completed ++;
+		callbackIfDone();
+	};
 
-		if (index < array.length) {
-			each(array[index], next);
-		} else {
+	var callbackIfDone = function() {
+		if (completed == array.length) {
 			callback();
 		}
 	};
 
-	each(array[0], next);
+	for (var i=0; i<array.length; i++) {
+		each(array[i], done);
+	}
 }
 
 Backbone.View.prototype.close = function() {

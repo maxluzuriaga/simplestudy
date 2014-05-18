@@ -6,17 +6,24 @@ app.GuideView = Backbone.View.extend({
 			var template = _.template(file, { guide: this.guide });
 			$(this.el).html(template);
 
-			app.asyncForEach(this.guide.sections.models, function(section, next) {
+			this.sectionViews = [];
+
+			app.asyncForEach(this.guide.sections.models, function(section, done) {
 				var view = new app.SectionShowView();
 				view.section = section;
 				view.guideMine = this.guide.get('mine');
 
 				view.render(function(v) {
-					$(this.el).find("#guide").append(v.el);
+					// $(this.el).find("#guide").append(v.el);
+					this.sectionViews.push(v);
 
-					next();
+					done();
 				}.bind(this));
 			}.bind(this), function() {
+				this.sectionViews.forEach(function(view) {
+					$(this.el).find("#guide").append(view.el);
+				}.bind(this));
+
 				callback(this);
 			}.bind(this));
 		}.bind(this));

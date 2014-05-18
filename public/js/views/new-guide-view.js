@@ -23,18 +23,21 @@ app.NewGuideView = Backbone.View.extend({
 
 			this.sectionFields = [];
 
-			app.asyncForEach(this.guide.sections.models, function(section, next) {
+			app.asyncForEach(this.guide.sections.models, function(section, done) {
 				var view = new app.SectionEditView();
 				view.section = section;
 				view.parentView = this;
 
 				view.render(function(v) {
-					$(this.el).find("#sections-list").append(v.el);
-					next();
+					this.sectionFields.push(view);
+
+					done();
+				}.bind(this));
+			}.bind(this), function() {
+				this.sectionFields.forEach(function(view) {
+					$(this.el).find("#sections-list").append(view.el);
 				}.bind(this));
 
-				this.sectionFields.push(view);
-			}.bind(this), function() {
 				callback(this);
 
 				this.sectionMoved();

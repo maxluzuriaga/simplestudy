@@ -56,12 +56,6 @@ Backbone.View.prototype.close = function() {
 	this.unbind();
 }
 
-_.templateSettings = {
-	evaluate:    /\{\{(.+?)\}\}/g,
-    interpolate: /\{\{=(.+?)\}\}/g,
-    escape:      /\{\{-(.+?)\}\}/g,
-};
-
 $(function() {
 
 });

@@ -6,8 +6,8 @@
 				<a href="#" class="no-click disapprove <%= !section.get('approved') ? 'selected' : '' %>"><i class="fa fa-thumbs-down"></i></a>
 			</div>
 		<% } %>
-		<h3><%= section.get('name') %></h3>
 		<p class="user-name"><i class="fa fa-user"></i> <%= section.get('mine') ? 'Me' : section.get('user').fullName %></p>
+		<h3><%= section.get('name') %> <span class="edited-date">last edited <%= timeAgo %></span></h3>
 	</div>
 
 	<div class="section-text">

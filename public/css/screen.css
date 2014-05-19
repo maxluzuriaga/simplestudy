@@ -533,13 +533,20 @@ article.section .approve-box a.selected {
 article.section div.group > h3 {
 	font-weight: bold;
 	font-size: 24px;
-	float: left;
+	/*float: left;*/
+}
+
+h3 span.edited-date {
+	font-weight: normal;
+	font-size: 14px;
+	color: #666;
 }
 
 article.section div.group > p.user-name {
 	float: right;
 	padding-top: 4px;
 	font-size: 14px;
+	margin-left: 5px;
 }
 
 article.section .hidden-section-message {

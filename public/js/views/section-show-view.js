@@ -7,7 +7,8 @@ app.SectionShowView = Backbone.View.extend({
 
 	render: function(callback) {
 		app.getTemplate("sections/show", function(file) {
-			var template = _.template(file, { section: this.section, guideMine: this.guideMine, hideText: this.hideText });
+			var timeAgo = moment(this.section.get('edited_date')).fromNow();
+			var template = _.template(file, { section: this.section, guideMine: this.guideMine, hideText: this.hideText, timeAgo: timeAgo });
 			$(this.el).html(template);
 
 			callback(this);

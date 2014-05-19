@@ -482,9 +482,13 @@ article.section {
 	margin-bottom: 15px;
 }
 
-article.section:last-child {
+#guide > div:last-child article {
 	margin-bottom: 0;
-	border: 0;
+	border-bottom: 0;
+}
+
+#guide > div article.section.mine {
+	border-bottom: none;
 }
 
 article.section .approve-box {

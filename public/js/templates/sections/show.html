@@ -1,4 +1,4 @@
-<article class="section mine">
+<article class="section {{= section.get('mine') ? 'mine' : '' }}">
 	<div class="group">
 		{{ if (guideMine) { }}
 			<div class="approve-box group">
@@ -12,13 +12,7 @@
 
 	<div class="section-text">
 		{{ if (guideMine || !hideText || section.get('mine')) { }}
-			{{ if (section.get('mine')) { }}
-				(mine)
 				{{- section.get('text') }}
-			{{ } else { }}
-				(not mine)
-				{{- section.get('text') }}
-			{{ } }}
 		{{ } else { }}
 			<div class="hidden-section-message">
 				<p>You'll gain access to the rest of the study guide once the owner approves your section.<p>

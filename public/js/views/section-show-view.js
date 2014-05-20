@@ -26,6 +26,10 @@ app.SectionShowView = Backbone.View.extend({
 				});
 			}
 
+			if (this.guideMine) {
+				$(this.el).find('div.approve-box a').tipsy({gravity: 's'})
+			}
+
 			window.setInterval(this.updateEditedText.bind(this), 60000)
 		}.bind(this));
 	},

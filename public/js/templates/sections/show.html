@@ -2,8 +2,8 @@
 	<div class="group">
 		<% if (guideMine) { %>
 			<div class="approve-box group">
-				<a href="#" class="no-click approve <%= section.get('approved') ? 'selected' : '' %>"><i class="fa fa-thumbs-up"></i></a>
-				<a href="#" class="no-click disapprove <%= !section.get('approved') ? 'selected' : '' %>"><i class="fa fa-thumbs-down"></i></a>
+				<a href="#" original-title="Approve Section" class="no-click approve <%= section.get('approved') ? 'selected' : '' %>"><i class="fa fa-thumbs-up"></i></a>
+				<a href="#" original-title="Disapprove Section" class="no-click disapprove <%= !section.get('approved') ? 'selected' : '' %>"><i class="fa fa-thumbs-down"></i></a>
 			</div>
 		<% } %>
 		<p class="user-name"><i class="fa fa-user"></i> <%= section.get('mine') ? 'Me' : section.get('user').fullName %></p>

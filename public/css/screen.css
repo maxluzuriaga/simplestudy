@@ -471,6 +471,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 h2.guide-name {
 	text-shadow: none;
 	text-align: center;
+	margin-bottom: 13px;
+}
+
+p.owner-name {
+	text-align: center;
+	margin-bottom: 14px;
+	color: #444;
 }
 
 #guide {

@@ -491,6 +491,21 @@ article.section {
 	border-bottom: none;
 }
 
+article.section .approved-status {
+	float: left;
+	font-size: 22px;
+	padding-top: 1px;
+	margin-right: 5px;
+}
+
+article.section .approved-status .approved {
+	color: rgb(0,140,0);
+}
+
+article.section .approved-status .disapproved {
+	color: rgb(215,0,0);
+}
+
 article.section .approve-box {
 	float: left;
 	/*width: 50px;*/
@@ -523,11 +538,11 @@ article.section .approve-box a.selected {
 }
 
 .approve-box a.disapprove {
-	color: rgb(230,0,0);
+	color: rgb(215,0,0);
 }
 
 .approve-box a.disapprove.selected {
-	background: rgb(230,0,0);
+	background: rgb(215,0,0);
 }
 
 article.section div.group > h3 {

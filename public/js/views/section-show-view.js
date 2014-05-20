@@ -30,6 +30,10 @@ app.SectionShowView = Backbone.View.extend({
 				$(this.el).find('div.approve-box a').tipsy({gravity: 's'})
 			}
 
+			if ((!this.hideText && !this.guideMine) || this.section.get('mine')) {
+				$(this.el).find('div.approved-status i').tipsy({gravity: 's'})
+			}
+
 			window.setInterval(this.updateEditedText.bind(this), 60000)
 		}.bind(this));
 	},

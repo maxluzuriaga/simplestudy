@@ -2,11 +2,22 @@
 	<div class="group">
 		<% if (guideMine) { %>
 			<div class="approve-box group">
-				<a href="#" original-title="Approve Section" class="no-click approve <%= section.get('approved') ? 'selected' : '' %>"><i class="fa fa-thumbs-up"></i></a>
-				<a href="#" original-title="Disapprove Section" class="no-click disapprove <%= !section.get('approved') ? 'selected' : '' %>"><i class="fa fa-thumbs-down"></i></a>
+				<a href="#" original-title="Approve section" class="no-click approve <%= section.get('approved') ? 'selected' : '' %>"><i class="fa fa-thumbs-up"></i></a>
+				<a href="#" original-title="Disapprove section" class="no-click disapprove <%= !section.get('approved') ? 'selected' : '' %>"><i class="fa fa-thumbs-down"></i></a>
 			</div>
 		<% } %>
 		<p class="user-name"><i class="fa fa-user"></i> <%= section.get('mine') ? 'Me' : section.get('user').fullName %></p>
+
+		<% if ((!hideText && !guideMine) || section.get('mine')) { %>
+			<div class="approved-status">
+				<% if (section.get('approved')) { %>
+					<i class="fa fa-check-circle-o approved" original-title="Approved by owner"></i>
+				<% } else { %>
+					<i class="fa fa-times-circle-o disapproved" original-title="Not yet approved"></i>
+				<%} %>
+			</div>
+		<% } %>
+
 		<h3><%= section.get('name') %> <span class="edited-date">last edited <%= timeAgo %></span></h3>
 	</div>
 

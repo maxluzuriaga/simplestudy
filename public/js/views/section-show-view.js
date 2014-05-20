@@ -2,7 +2,8 @@ var app = app || {};
 
 app.SectionShowView = Backbone.View.extend({
 	events: {
-		"click a.approve": "approveSection"
+		"click a.approve": "approveSection",
+		"click a.disapprove": "disapproveSection"
 	},
 
 	render: function(callback) {
@@ -46,11 +47,22 @@ app.SectionShowView = Backbone.View.extend({
 		$(this.el).find(".edited-date").html(text);
 	},
 
-	approveSection: function(e) {
+	setApproved: function(e, approved) {
 		e.preventDefault();
 
-		this.section.setApproved(true, function() {
-			console.log(this.section);
+		this.section.setApproved(approved, function() {
+			$(this.el).find("div.approve-box a.selected").removeClass("selected");
+
+			var klass = approved ? "approve" : "disapprove";
+			$(this.el).find("div.approve-box a." + klass).addClass("selected");
 		}.bind(this));
+	},
+
+	approveSection: function(e) {
+		this.setApproved(e, true);
+	},
+
+	disapproveSection: function(e) {
+		this.setApproved(e, false);
 	}
 });

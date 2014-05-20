@@ -14,6 +14,8 @@ app.SectionShowView = Backbone.View.extend({
 
 			callback(this);
 
+			$(this.el).find("p.user-name i").tipsy({gravity: 's'});
+
 			if (this.section.get('mine')) {
 				$(this.el).find("div.section-text").editable({
 					inlineMode: false,

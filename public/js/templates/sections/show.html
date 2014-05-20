@@ -6,7 +6,7 @@
 				<a href="#" original-title="Disapprove section" class="no-click disapprove <%= !section.get('approved') ? 'selected' : '' %>"><i class="fa fa-thumbs-down"></i></a>
 			</div>
 		<% } %>
-		<p class="user-name"><i class="fa fa-user"></i> <%= section.get('mine') ? 'Me' : section.get('user').fullName %></p>
+		<p class="user-name"><i class="fa fa-user" original-title="<%= section.get('user').email %>"></i> <%= section.get('mine') ? 'Me' : section.get('user').fullName %></p>
 
 		<% if ((!hideText && !guideMine) || section.get('mine')) { %>
 			<div class="approved-status">

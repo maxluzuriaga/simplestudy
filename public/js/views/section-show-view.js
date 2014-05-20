@@ -17,9 +17,10 @@ app.SectionShowView = Backbone.View.extend({
 				$(this.el).find("div.section-text").editable({
 					inlineMode: false,
 					autosave: true,
-					beforeSaveCallback: this.beforeSave,
+					autosaveInterval: 2000,
+					beforeSaveCallback: this.beforeSave.bind(this),
 					saveURL: "/sections/" + this.section.get('id'),
-					afterSaveCallback: this.afterSave,
+					afterSaveCallback: this.afterSave.bind(this),
 					buttons: ["bold", "italic", "underline", "strikeThrough",  "fontSize", "color", "align", "insertOrderedList", "insertUnorderedList", "outdent", "indent", "createLink", "insertImage", "undo", "redo", "save"]
 				});
 			}
@@ -27,11 +28,20 @@ app.SectionShowView = Backbone.View.extend({
 	},
 
 	beforeSave: function() {
-		console.log("saving...");
+		this.updateEditedText("saving...");
 	},
 
 	afterSave: function() {
-		console.log("saved!");
+		this.section.set('edited_date', new Date());
+		window.setTimeout(this.updateEditedText.bind(this), 350);
+	},
+
+	updateEditedText: function(text) {
+		if (!text) {
+			text = "last edited " + moment(this.section.get('edited_date')).fromNow();
+		}
+
+		$(this.el).find(".edited-date").html(text);
 	},
 
 	approveSection: function(e) {

@@ -24,6 +24,8 @@ app.SectionShowView = Backbone.View.extend({
 					buttons: ["bold", "italic", "underline", "strikeThrough",  "fontSize", "color", "align", "insertOrderedList", "insertUnorderedList", "outdent", "indent", "createLink", "insertImage", "undo", "redo", "save"]
 				});
 			}
+
+			window.setInterval(this.updateEditedText.bind(this), 60000)
 		}.bind(this));
 	},
 

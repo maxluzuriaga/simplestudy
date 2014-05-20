@@ -54,6 +54,8 @@ app.router.on('route:login', function() {
 });
 
 app.router.on('route:list', function() {
+	document.title = 'SimpleStudy';
+	
 	var listview = new app.ListView();
 	app.router.showView("#main-wrapper", listview);
 });
@@ -64,6 +66,9 @@ app.router.on('route:show-guide', function(id) {
 
 	guideview.guide.fetch({success: function() {
 		guideview.guide.sections = new app.Sections(guideview.guide.get('sections'));
+
+		document.title = guideview.guide.get('name');
+
 		app.router.showView("#main-wrapper", guideview);
 	}});
 });

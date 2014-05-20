@@ -56,7 +56,7 @@ function routes(app) {
 
     new Section({id: id}).fetch().then(function(section) {
       if (section) {
-        section.load(['guide']).then(function(section) {
+        section.load(['guide', 'user']).then(function(section) {
           request.section = section;
           next();
         });

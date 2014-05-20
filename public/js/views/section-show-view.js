@@ -12,7 +12,26 @@ app.SectionShowView = Backbone.View.extend({
 			$(this.el).html(template);
 
 			callback(this);
+
+			if (this.section.get('mine')) {
+				$(this.el).find("div.section-text").editable({
+					inlineMode: false,
+					autosave: true,
+					beforeSaveCallback: this.beforeSave,
+					saveURL: "/sections/" + this.section.get('id'),
+					afterSaveCallback: this.afterSave,
+					buttons: ["bold", "italic", "underline", "strikeThrough",  "fontSize", "color", "align", "insertOrderedList", "insertUnorderedList", "outdent", "indent", "createLink", "insertImage", "undo", "redo", "save"]
+				});
+			}
 		}.bind(this));
+	},
+
+	beforeSave: function() {
+		console.log("saving...");
+	},
+
+	afterSave: function() {
+		console.log("saved!");
 	},
 
 	approveSection: function(e) {

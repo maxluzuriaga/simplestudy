@@ -23,11 +23,6 @@ app.GuideView = Backbone.View.extend({
 				}.bind(this));
 
 				callback(this);
-
-				$("article.section.mine div.section-text").editable({
-					inlineMode: false,
-					buttons: ["bold", "italic", "underline", "strikeThrough",  "fontSize", "color", "align", "insertOrderedList", "insertUnorderedList", "outdent", "indent", "createLink", "insertImage", "undo", "redo", "save"]
-				});
 			}.bind(this));
 		}.bind(this));
 	},

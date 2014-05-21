@@ -8,5 +8,5 @@ exports.up = function(db, callback) {
 };
 
 exports.down = function(db, callback) {
-  db.removeColumn('sections', 'int', callback);
+  db.removeColumn('sections', 'index', callback);
 };

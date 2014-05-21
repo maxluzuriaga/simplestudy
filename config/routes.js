@@ -15,8 +15,8 @@ var helper = require('../lib/helper');
 
 passport.use(new GoogleStrategy(
   {
-    returnURL: 'http://localhost:5000/auth/return',
-    realm: 'http://localhost:5000/'
+    returnURL: process.env.ROOT_URL + 'auth/return',
+    realm: process.env.ROOT_URL
   },
   users_controller.authorize
 ));

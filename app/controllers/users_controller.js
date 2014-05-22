@@ -84,7 +84,7 @@ function login(request, response) {
 }
 
 function me(request, response) {
-  response.json(200, request.user.omit(['authorization_token', 'identifier']));
+  response.json(200, request.user.omit(['authorization_token', 'identifier', 'google_id', 'domain', 'access_token', 'refresh_token']));
 }
 
 function _quicksort(array) {

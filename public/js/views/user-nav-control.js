@@ -31,6 +31,6 @@ app.UserNavControl = Backbone.View.extend({
 		$.removeCookie('authorization_token');
 
 		this.close();
-		app.router.navigate("", { trigger: true });
+		app.router.navigate("login", { trigger: true });
 	}
 });

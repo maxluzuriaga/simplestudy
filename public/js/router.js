@@ -50,7 +50,14 @@ var Router = Backbone.Router.extend({
 app.router = new Router();
 
 app.router.on('route:login', function() {
-	alert("yo");
+	if ($.cookie('authorization_token')) {
+		app.router.navigate("", { trigger: true });
+	} else {
+		document.title = 'Log in or create an account';
+
+		var loginview = new app.LoginView();
+		app.router.showView("#main-wrapper", loginview);
+	}
 });
 
 app.router.on('route:list', function() {

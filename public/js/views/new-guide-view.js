@@ -41,6 +41,7 @@ app.NewGuideView = Backbone.View.extend({
 				this.sectionMoved();
 				$('.sortable').sortable().bind('sortupdate', this.sectionMoved.bind(this));
 				$('input.guide-name').tipsy({trigger: 'manual', gravity: 'e'});
+				$('a#new-section').tipsy({trigger: 'manual', gravity: 'e'});
 			}.bind(this));
 		}.bind(this));
 	},
@@ -127,6 +128,7 @@ app.NewGuideView = Backbone.View.extend({
 
 			this.sectionMoved();
 			$('.sortable').sortable().bind('sortupdate', this.sectionMoved.bind(this));
+			$(this.el).find('a#new-section').tipsy("hide");
 		}.bind(this));
 	},
 

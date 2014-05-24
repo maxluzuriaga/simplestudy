@@ -22,11 +22,15 @@ app.Guide = Backbone.Model.extend({
 			err.push({ selector: "input.guide-name", msg: "Enter a name for your study guide." });
 		}
 
-		this.sections.forEach(function(section) {
-			if (!section.isValid()) {
-				err.push({ index: section.get('index'), errors: section.validationError });
-			}
-		});
+		if (this.sections.length == 0) {
+			err.push({ selector: "a#new-section", msg: "Please enter at least one section." })
+		} else {
+			this.sections.forEach(function(section) {
+				if (!section.isValid()) {
+					err.push({ index: section.get('index'), errors: section.validationError });
+				}
+			});
+		}
 
 		if (err.length > 0) {
 			return err;

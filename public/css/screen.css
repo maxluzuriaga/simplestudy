@@ -536,7 +536,7 @@ article.section {
 	border-bottom: 0;
 }
 
-#guide > div article.section.mine {
+#guide > div article.section.mine, #guide > div article.section.no-text {
 	border-bottom: none;
 }
 
@@ -670,6 +670,11 @@ div.section-text ul {
 
 div.section-text ul, div.section-text ol {
 	padding-left: 20px;
+}
+
+div.section-text p.empty-message {
+	width: auto;
+	/*border: 0;*/
 }
 
 .paper, .body-wrapper {

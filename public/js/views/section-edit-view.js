@@ -118,9 +118,7 @@ app.SectionEditView = Backbone.View.extend({
 		var user = new app.User({email: this.section.get('email')});
 
 		user.fetch({success: function() {
-			// this.section.emailValid = user.get('exists');
 			this.setEmailValid(user.get('exists'));
-			console.log(this.section.emailValid);
 		}.bind(this)});
 	},
 

@@ -60,6 +60,15 @@ app.EmailSuggestionList = Backbone.View.extend({
 			e.preventDefault();
 		}
 
+		if (this.users.length == 0) {
+			return;
+		}
+
+		if (!this.selected) {
+			this.selected = 0;
+			this.updateSelected();
+		}
+
 		var email = this.users.at(this.selected).get('email');
 		this.parent.setEmail(email);
 	},

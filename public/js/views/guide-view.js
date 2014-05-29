@@ -22,7 +22,14 @@ app.GuideView = Backbone.View.extend({
 					$(this.el).find("#guide").append(view.el);
 				}.bind(this));
 
-				callback(this);
+				this.chatView = new app.ChatView();
+				this.chatView.guide = this.guide;
+
+				this.chatView.render(function(v) {
+					$(this.el).find(".chat-wrapper").html(v.el);
+
+					callback(this);
+				}.bind(this));
 			}.bind(this));
 		}.bind(this));
 	},
@@ -31,5 +38,7 @@ app.GuideView = Backbone.View.extend({
 		this.sectionViews.forEach(function(view) {
 			view.close();
 		});
+
+		this.chatView.close();
 	}
 });

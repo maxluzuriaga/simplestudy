@@ -51,6 +51,8 @@ app.ChatView = Backbone.View.extend({
 
 	messageReceived: function(data) {
 		$(this.el).find(".messages-list").append('<li class="' + data.klass + '"><strong>' + data.user.fullName + '</strong>' + data.message + '</li>');
+
+		$(this.el).find(".messages-list").animate({ scrollTop: $(this.el).find(".messages-list")[0].scrollHeight}, 100);
 	},
 
 	sendMessage: function(e) {

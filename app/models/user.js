@@ -12,7 +12,7 @@ var User = bookshelf.Model.extend({
   },
 
   renderJSON: function() {
-  	return this.omit(['id', 'authorization_token', 'identifier', 'google_id', 'domain', 'access_token', 'refresh_token']);
+  	return this.omit(['authorization_token', 'identifier', 'google_id', 'domain', 'access_token', 'refresh_token']);
   }
 });
 

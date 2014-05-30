@@ -18,6 +18,8 @@ app.ChatView = Backbone.View.extend({
 
 			callback(this);
 
+			this.adjustHeight();
+
 			app.socket.emit('enter', { id: this.guide.id, token: $.cookie('authorization_token') });
 			app.socket.on('existing users', this.loadUsers.bind(this));
 			app.socket.on('user entered', this.userEntered.bind(this));

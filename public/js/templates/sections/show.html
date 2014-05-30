@@ -23,7 +23,7 @@
 
 	<div class="section-text">
 		<% if (guideMine || !hideText || section.get('mine')) { %>
-			<% if (section.get('text')) { %>
+			<% if (section.get('text') || section.get('mine')) { %>
 				<%= section.get('text') %>
 			<% } else { %>
 				<p class="empty-message"><%= section.get('user').fullName %> has not written anything in this section yet.</p>
